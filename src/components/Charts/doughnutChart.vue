@@ -1,11 +1,9 @@
 <template>
-  <div style="width:100%;height:198px;">
+  <div style="width:100%;">
     <a-spin :spinning="loading">
-      <a-row>
-        <a-col v-for="item in 3" :key="item" :span="8">
-          <div :id="`${id}-${item}`"></div>
-        </a-col>
-      </a-row>
+      <div class="doughnut-block">
+        <div v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
+      </div>
     </a-spin>
   </div>
 </template>
@@ -37,42 +35,31 @@ export default {
     },
     loadDom () {
       // 基于准备好的dom，初始化echarts实例
-
-      var legendData = ['一流大学', '普通本科', '独立学院', '一流学科', '新建本科', '合作办学']
       var seriesData = [
-        { value: 28, name: '一流大学' },
-        { value: 28, name: '普通本科' },
-        { value: 26, name: '独立学院' },
-        { value: 14, name: '一流学科' },
-        { value: 12, name: '新建本科' },
-        { value: 10, name: '合作办学' }
+        { value: 21, name: '一流大学' },
+        { value: 28, name: '普通本科' }
       ]
-      for (let i = 0; i < 3; i++) {
+      for (let i = 1; i < 4; i++) {
         var myChart = this.$echarts.init(document.getElementById(`${this.id}-${i}`))
         myChart.clear()
         const option = {
           title: {
-            text: '全国高校类型占比',
+            text: i === 1 ? '全国高校类型占比' : '',
             textStyle: {
               color: '#fff',
               fontSize: 14,
               fontweight: 400
-            }
+            },
+            top: 10,
+            left: 10
           },
           tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b}: {c} ({d}%)'
           },
-          legend: {
-            bottom: 0,
-            textStyle: {
-              color: '#fff'
-            },
-            data: legendData
-          },
           series: [
             {
-              name: '访问来源',
+              name: '全国高校类型占比',
               type: 'pie',
               radius: ['40%', '55%'],
               avoidLabelOverlap: false,
@@ -82,6 +69,11 @@ export default {
                 color: '#fff'
               },
               labelLine: {
+                normal: {
+                  smooth: 0.2, // 此处是改变折线的长度
+                  length: 5,
+                  length2: 4
+                },
                 lineStyle: {
                   color: '#fff'
                 }
@@ -102,3 +94,12 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.doughnut-block {
+  display: flex;
+  >div{
+    flex: 1;
+    height:198px;
+  }
+}
+</style>

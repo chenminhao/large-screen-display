@@ -190,6 +190,9 @@ body{
 	.marginB12{
 		margin-bottom: 12px;
 	}
+	.marginB16{
+		margin-bottom: 16px !important;
+	}
 	.marginB20{
 		margin-bottom: 20px;
 	}
@@ -222,6 +225,9 @@ body{
 	}
 	.paddingTB10{
 		padding: 10px 0;
+	}
+	.padding12{
+		padding: 12px;
 	}
 	.paddingLR5{
 		padding: 0 5px;

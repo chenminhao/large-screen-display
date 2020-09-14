@@ -12,7 +12,6 @@ import TransferBar from '@/components/Charts/TransferBar'
 import TagCloud from '@/components/Charts/TagCloud'
 
 // pro components
-import AvatarList from '@/components/AvatarList'
 import CountDown from '@/components/CountDown'
 import Ellipsis from '@/components/Ellipsis'
 import FooterToolbar from '@/components/FooterToolbar'
@@ -30,7 +29,6 @@ import StandardFormRow from '@/components/StandardFormRow'
 import ArticleListContent from '@/components/ArticleListContent'
 
 export {
-  AvatarList,
   Bar,
   ChartCard,
   Liquid,

@@ -35,87 +35,99 @@ export default {
       myChart.clear()
       const option = {
         title: {
-          text: '堆叠区域图'
+          text: '历年教授上讲台比例趋势（按高校类型）',
+          textStyle: {
+            color: '#fff',
+            fontSize: 12,
+            fontweight: 400
+          },
+          top: 10,
+          left: 10
         },
         tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            label: {
-              backgroundColor: '#6a7985'
-            }
-          }
+          trigger: 'axis'
         },
         legend: {
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
+          data: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          icon: 'roundRect',
+          textStyle: {
+            color: '#fff'
+          },
+          orient: 'vertical',
+          top: 'middle',
+          right: 0
         },
         grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
+          top: '50',
+          left: '40',
+          right: '120',
+          bottom: '40',
+          containLabel: false
         },
-        xAxis: [
-          {
-            type: 'category',
-            boundaryGap: false,
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value'
-          }
-        ],
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          axisLine: {
+            show: false,
+            lineStyle: {
+              color: '#fff'
+            }
+          },
+          axisTick: false,
+          splitLine: false,
+          data: ['2017', '2018', '2019']
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            show: false,
+            lineStyle: {
+              color: '#fff'
+            }
+          },
+          axisTick: false,
+          splitLine: false
+        },
         series: [
           {
-            name: '邮件营销',
+            name: '一流大学',
             type: 'line',
-            stack: '总量',
-            areaStyle: {},
-            data: [120, 132, 101, 134, 90, 230, 210]
+            symbolSize: 10,
+            data: [11, 11, 15]
           },
           {
-            name: '联盟广告',
+            name: '一流学科',
             type: 'line',
-            stack: '总量',
-            areaStyle: {},
-            data: [220, 182, 191, 234, 290, 330, 310]
+            symbolSize: 10,
+            data: [8, 22, 12]
           },
           {
-            name: '视频广告',
+            name: '普通本科',
             type: 'line',
-            stack: '总量',
-            areaStyle: {},
-            data: [150, 232, 201, 154, 190, 330, 410]
+            symbolSize: 10,
+            data: [11, 11, 15]
           },
           {
-            name: '直接访问',
+            name: '新建本科',
             type: 'line',
-            stack: '总量',
-            areaStyle: {},
-            data: [320, 332, 301, 334, 390, 330, 320]
+            symbolSize: 10,
+            data: [8, 22, 12]
           },
           {
-            name: '搜索引擎',
+            name: '独立院校',
             type: 'line',
-            stack: '总量',
-            label: {
-              normal: {
-                show: true,
-                position: 'top'
-              }
-            },
-            areaStyle: {},
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
+            symbolSize: 10,
+            data: [11, 11, 15]
+          },
+          {
+            name: '合作协办',
+            type: 'line',
+            symbolSize: 10,
+            data: [8, 22, 12]
           }
         ]
       }
+
       myChart.setOption(option)
     }
   }

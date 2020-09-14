@@ -2,24 +2,27 @@
   <div>
     <a-row class="visual">
       <a-col class="visual-left" :span="7">
-        <a-row :gutter="16">
-          <a-col :span="6" v-for="(item,index) in Object.keys(data.left)" :key="index">
-            <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
-              <div class="in-rect">
+        <div class="visual-bg padding12">
+          <p class="marginB16">教授授课情况</p>
+          <a-row :gutter="16">
+            <a-col :span="6" v-for="(item,index) in Object.keys(data.left)" :key="index">
+              <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
+                <div class="in-rect">
+                  <p>
+                    <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
+                  </p>
+                  <p>{{ item }}</p>
+                </div>
+              </div>
+              <div v-else class="visual-info">
                 <p>
                   <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
                 </p>
                 <p>{{ item }}</p>
               </div>
-            </div>
-            <div v-else class="visual-info">
-              <p>
-                <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
-              </p>
-              <p>{{ item }}</p>
-            </div>
-          </a-col>
-        </a-row>
+            </a-col>
+          </a-row>
+        </div>
         <div class="visual-bg marginT12">
           <!-- 教授历年上讲台比例 -->
           <doughnutChart :id="'jsbl'" />
@@ -77,6 +80,7 @@
       <a-col class="visual-right" :span="7">
         <div class="visual-bg marginT12">
           <a-row :gutter="16">
+            <p>教授授课情况</p>
             <a-col :span="12" v-for="(item,index) in Object.keys(data.right)" :key="index">
               <div v-if="item==='全国全日制在校生'" class="bg-right out-rect">
                 <div class="in-rect">
