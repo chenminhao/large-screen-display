@@ -1,6 +1,5 @@
 import jsjgfx from './jsjgfx'
-import xxdjcg from './xxdjcg'
-import xxlxcg from './xxlxcg'
 import xksj from './xksj'
+import nlzb from './nlzb'
 
-export { jsjgfx, xxdjcg, xxlxcg, xksj }
+export { jsjgfx, xksj, nlzb }

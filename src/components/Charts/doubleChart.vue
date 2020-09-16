@@ -37,12 +37,12 @@ export default {
         title: {
           text: '录取文理科最高分和最低分',
           textStyle: {
-            color: '#00FFFF',
-            fontSize: 14,
+            color: '#fff',
+            fontSize: 12,
             fontweight: 400
           },
-          padding: [10, 0, 0, 10],
-          left: 'left'
+          top: 10,
+          left: 10
         },
         tooltip: {
           trigger: 'axis'
@@ -67,10 +67,14 @@ export default {
           {
             type: 'category',
             data: ['文科', '理科'],
+            axisTick: {
+              show: false,
+              alignWithLabel: false
+            },
             axisLine: { // 坐标轴轴线相关设置。数学上的x轴
               show: true,
               lineStyle: {
-                color: '#01F8FB'
+                color: '#29A8FF'
               }
             },
             splitLine: {
@@ -84,10 +88,14 @@ export default {
         yAxis: [
           {
             type: 'value',
+            axisTick: {
+              show: false,
+              alignWithLabel: false
+            },
             axisLine: { // 坐标轴轴线相关设置。数学上的x轴
               show: true,
               lineStyle: {
-                color: '#01F8FB'
+                color: '#29A8FF'
               }
             },
             axisLabel: { // 坐标轴刻度标签的相关设置
@@ -109,9 +117,9 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(
                   0, 0, 0, 1,
                   [
-                    { offset: 0, color: '#02edf0' },
-                    { offset: 0.5, color: '#0d9ea0' },
-                    { offset: 1, color: '#0c1936' }
+                    { offset: 0, color: '#279ced' },
+                    { offset: 0.5, color: '#2079bb' },
+                    { offset: 1, color: '#0d1932' }
                   ]
                 )
               }
@@ -127,9 +135,9 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(
                   0, 0, 0, 1,
                   [
-                    { offset: 0, color: '#20ca9c' },
-                    { offset: 0.5, color: '#1f886c' },
-                    { offset: 1, color: '#0c1936' }
+                    { offset: 0, color: '#b7338c' },
+                    { offset: 0.5, color: '#af3187' },
+                    { offset: 1, color: '#2d1941' }
                   ]
                 )
               }

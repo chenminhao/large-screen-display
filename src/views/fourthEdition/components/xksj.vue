@@ -29,140 +29,127 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '全国教学名师趋势分析',
+          text: '录取文理科最高分和最低分',
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
-          left: 'center'
+          top: 10,
+          left: 10
         },
-        color: ['#29a8ff', '#E93CA7'],
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-          }
-        },
-        grid: {
-          top: '21%',
-          left: '8%',
-          right: '4%',
-          bottom: '10%',
-          containLabel: true
-        },
-        legend: {
-          top: 20,
-          textStyle: {
-            color: '#fff'
-          },
-          data: ['国家级教学名师', '省级教学名师']
-        },
-        xAxis: [
-          {
-            type: 'category',
-            axisTick: {
-              show: false
-            },
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: '#fff'
-              }
-            },
-            axisLine: {
-              lineStyle: {
-                color: '#29A8FF'
-              }
+        baseOption: {
+          timeline: {
+            axisType: 'category',
+            autoPlay: true,
+            playInterval: 2000,
+            controlStyle: false,
+            bottom: 0,
+            label: {
+              color: '#fff'
             },
             data: ['2017', '2018', '2019']
-          }
-        ],
-        yAxis: [
-          {
-            type: 'value',
-            max: 700,
-            position: 'left',
+          },
+          xAxis: {
+            'type': 'category',
+            data: ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学'],
             axisTick: {
-              show: false
+              show: false,
+              alignWithLabel: false
             },
-            axisLabel: {
+            axisLine: { // 坐标轴轴线相关设置。数学上的x轴
               show: true,
-              textStyle: {
-                color: '#fff'
-              }
-            },
-            axisLine: {
               lineStyle: {
                 color: '#29A8FF'
               }
             },
-            splitLine: false
-          },
-          {
-            type: 'value',
-            max: 7000,
-            position: 'right',
-            axisTick: {
+            splitLine: {
               show: false
             },
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: '#fff'
-              }
+            axisLabel: { // 坐标轴刻度标签的相关设置
+              color: '#fff'
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisTick: {
+              show: false,
+              alignWithLabel: false
             },
-            axisLine: {
+            axisLine: { // 坐标轴轴线相关设置。数学上的x轴
+              show: true,
               lineStyle: {
                 color: '#29A8FF'
               }
             },
-            splitLine: false
-          }
-        ],
-        series: [
-          {
-            name: '国家级教学名师',
-            type: 'bar',
-            barWidth: 20,
-            data: [450, 490, 700],
-            itemStyle: {
-              normal: {
-                color: (params) => {
-                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
-                    [
-                      { offset: 0, color: '#28a4fa' },
-                      { offset: 0.5, color: '#1c68a5' },
-                      { offset: 1, color: '#0c1936' }
-                    ]
-                  )
-                }
-              }
+            splitLine: {
+              show: false
+            },
+            axisLabel: { // 坐标轴刻度标签的相关设置
+              color: '#fff'
             }
           },
-          {
-            name: '省级教学名师',
+          series: [{
             type: 'bar',
-            barWidth: 20,
-            yAxisIndex: 1,
-            data: [4500, 5900, 8000],
             itemStyle: {
-              normal: {
-                color: (params) => {
-                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
-                    [
-                      { offset: 0, color: '#e73ca6' }, // 柱图渐变色
-                      { offset: 0.5, color: '#82296f' }, // 柱图渐变色
-                      { offset: 1, color: '#0c1936' } // 柱图渐变色
-                    ]
-                  )
-                }
-              }
+              color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: '#1f79ff'
+              }, {
+                offset: 1,
+                color: '#54c5ff'
+              }])
             }
           }
+          ]
+        },
+        options: [{
+          xAxis: [{
+            'type': 'category',
+            'axisLabel': {
+              'interval': 0
+            },
+            data: ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学']
+          }],
+          series: [{
+            data: [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+          }
+          ]
+        },
+        {
+          xAxis: [{
+            'type': 'category',
+            'axisLabel': {
+              'interval': 0
+            },
+            data: ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学'],
+            splitLine: {
+              show: false
+            }
+          }],
+          series: [{
+            data: [1, 12, 3, 4, 5, 1, 12, 3, 4, 5, 1, 12]
+          }
+          ]
+        }, {
+          xAxis: [{
+            'type': 'category',
+            'axisLabel': {
+              'interval': 0
+            },
+            data: ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学'],
+            splitLine: {
+              show: false
+            }
+          }],
+          series: [{
+            data: [1, 2, 9, 4, 1, 2, 9, 4, 1, 2, 9, 4]
+          }
+          ]
+        }
+
         ]
+
       }
       this.myChart.setOption(option)
       setInterval(() => {

@@ -37,8 +37,11 @@ export default {
         legend: {
           data: [],
           icon: 'roundRect',
+          itemWidth: 18,
+          itemHeight: 4, // 修改icon图形大小
           textStyle: {
-            color: '#fff'
+            color: '#fff',
+            fontSize: 10
           },
           orient: 'vertical',
           top: 'middle',
@@ -47,7 +50,7 @@ export default {
         grid: {
           top: '50',
           left: '40',
-          right: '120',
+          right: '90',
           bottom: '40',
           containLabel: false
         },
@@ -194,8 +197,7 @@ export default {
         this.option.series.map((el, index) => {
           if (currentIndex === index) {
             this.option.series[index].lineStyle = {
-              width: 4,
-              color: '#fff'
+              width: 4
             }
           } else {
             this.option.series[index].lineStyle = {

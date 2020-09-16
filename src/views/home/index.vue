@@ -1,6 +1,6 @@
 <!-- The ref attr used to find the swiper instance -->
 <template>
-  <swiper class="fullScreen" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+  <swiper class="fullScreen" :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide>
       <third-edition />

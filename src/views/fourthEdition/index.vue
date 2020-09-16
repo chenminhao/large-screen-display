@@ -46,34 +46,46 @@
           <!-- 教师结构分析 -->
           <jsjgfx :id="'jsjgfx'" />
         </div>
-        <a-row>
+        <a-row :gutter="30">
           <a-col :span="12">
-            <!-- 职称结构历年占比趋势 -->
-            <stackedAreaChartV2 :id="'zczb'" />
+            <div class="visual-bg marginT12">
+              <!-- 职称结构历年占比趋势 -->
+              <stackedAreaChartV2 :id="'zczb'" />
+            </div>
           </a-col>
           <a-col :span="12">
-            <!-- 年龄结构历年占比趋势 -->
-            <nlzb :id="'nlzb'" />
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col :span="12">
-            <!-- 学位结构历年占比趋势 -->
-            <stackedAreaChartV2 :id="'xwzb'" />
-          </a-col>
-          <a-col :span="12">
-            <!-- 辅导员与心理咨询师数量历年趋势分析 -->
-            <doubleChart :id="'fdyzb'" />
+            <div class="visual-bg marginT12">
+              <!-- 年龄结构历年占比趋势 -->
+              <nlzb :id="'nlzb'" />
+            </div>
           </a-col>
         </a-row>
-        <a-row>
+        <a-row :gutter="30">
           <a-col :span="12">
-            <!-- 各学校类型教授学位教师占比趋势分析 -->
-            <stackedAreaChartV2 :id="'jszb'" />
+            <div class="visual-bg marginT12">
+              <!-- 学位结构历年占比趋势 -->
+              <stackedAreaChartV2 :id="'xwzb'" />
+            </div>
           </a-col>
           <a-col :span="12">
-            <!-- 各学校类型博士学位教师占比趋势分析 -->
-            <stackedAreaChartV2 :id="'bszb'" />
+            <div class="visual-bg marginT12">
+              <!-- 辅导员与心理咨询师数量历年趋势分析 -->
+              <doubleChart :id="'fdyzb'" />
+            </div>
+          </a-col>
+        </a-row>
+        <a-row :gutter="30">
+          <a-col :span="12">
+            <div class="visual-bg marginT12">
+              <!-- 各学校类型教授学位教师占比趋势分析 -->
+              <stackedAreaChartV2 :id="'jszb'" />
+            </div>
+          </a-col>
+          <a-col :span="12">
+            <div class="visual-bg marginT12">
+              <!-- 各学校类型博士学位教师占比趋势分析 -->
+              <stackedAreaChartV2 :id="'bszb'" />
+            </div>
           </a-col>
         </a-row>
       </a-col>
@@ -103,9 +115,9 @@
         </div>
         <div class="visual-bg marginT24">
           <!-- 国家级教学成果奖数据分析 (各学校类型历年国家级教学成果奖情况) -->
-          <xxdjcg :id="'xxdjcg'" />
+          <doubleChart :id="'xxdjcg'" />
           <!-- 各学校类型历年国家级教学成果奖情况 -->
-          <xxlxcg :id="'xxlxcg'" />
+          <doubleChart :id="'xxlxcg'" />
         </div>
       </a-col>
     </a-row>
@@ -115,7 +127,7 @@
 <script>
 import { PageView } from '@/layouts'
 import { doughnutChart, stackedAreaChart, stackedAreaChartV2, doubleChart } from '@/components/Charts'
-import { jsjgfx, xxdjcg, xxlxcg } from './components'
+import { jsjgfx, xksj, nlzb } from './components'
 import ICountUp from 'vue-countup-v2'
 export default {
   data () {
@@ -131,8 +143,8 @@ export default {
           '教授授课门数': 7.6
         },
         right: {
-          '全国高校教师总数': '2165.7',
-          '高校专业教师数': '1748.7'
+          '全国高校教师总数': 2165.7,
+          '高校专业教师数': 1748.7
         }
       },
       options: {
@@ -147,9 +159,9 @@ export default {
     stackedAreaChartV2,
     doubleChart,
     jsjgfx,
-    xxdjcg,
-    xxlxcg,
-    ICountUp
+    ICountUp,
+    xksj,
+    nlzb
   },
   methods: {
     // 全屏事件
@@ -195,9 +207,14 @@ p {
 .visual {
   background: url('../../assets/images/top.png') no-repeat;
   background-size: 100%;
+  .visual-left {
+    padding: 40px 30px 0 40px;
+  }
+  .visual-right {
+    padding: 40px 40px 0 30px;
+  }
   .visual-left,
   .visual-right {
-    padding: 40px 40px 0 40px;
     .visual-info {
       padding: 8px 0;
       margin-bottom: 12px;
@@ -282,6 +299,15 @@ p {
       color: rgba(255, 255, 255, 1);
       text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35);
       text-align: center;
+    }
+    .visual-bg {
+      background: rgba(12, 21, 48, 0.5);
+      border: 1px solid rgba(67, 154, 255, 0.15);
+      box-shadow: 0px 0px 40px 0px rgba(12, 21, 48, 0.3);
+      border-radius: 8px;
+      background: url('../../assets/images/gg.png') no-repeat;
+      background-color: #0a122d;
+      background-size: 100%;
     }
     .clearfix {
       margin: 12px 0 0 12px;
