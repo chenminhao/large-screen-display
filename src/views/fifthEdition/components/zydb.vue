@@ -7,7 +7,7 @@
         <a-select-option v-for="item in legendData" :key="item" :value="item">{{ item }}</a-select-option>
       </a-select>
     </div>
-    <ul class="majorUl majorUl1" v-if="seriesData[major]">
+    <ul class="majorUl majorUl1">
       <li class="majorLi" v-for="item in seriesData[major]" :key="item">
         <p>{{ item.name }}</p>
         <div>
@@ -36,7 +36,7 @@ export default {
       data: ['河北省', '山西省', '内蒙古自治区', '黑龙江省', '吉林省', '辽宁省', '陕西省', '甘肃省', '青海省', '新疆维吾尔自治区', '宁夏回族自治区', '山东省', '河南省', '江苏省', '浙江省', '安徽省', '江西省', '福建省', '台湾省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '四川省', '云南省', '贵州省', '西藏自治区', '上海市', '重庆市', '天津市', '北京市']
     }
   },
-  mounted () {
+  created () {
     this.loadDom()
   },
   methods: {
@@ -47,7 +47,6 @@ export default {
           this.seriesData[el].push({ name: elt, value: Math.floor(Math.random() * 100 + 1) })
         })
       })
-      console.log(this.seriesData)
     }
   }
 }

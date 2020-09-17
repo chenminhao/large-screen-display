@@ -2,15 +2,15 @@
 <template>
   <swiper class="fullScreen" :options="swiperOption" ref="mySwiper">
     <!-- slides -->
-    <!-- <swiper-slide>
+    <swiper-slide>
       <third-edition />
     </swiper-slide>
     <swiper-slide>
       <fourth-edition />
-    </swiper-slide> -->
-    <!-- <swiper-slide>
+    </swiper-slide>
+    <swiper-slide>
       <fifthEdition />
-    </swiper-slide> -->
+    </swiper-slide>
     <swiper-slide>
       <sixthEdition />
     </swiper-slide>
@@ -32,12 +32,6 @@ export default {
     swiper () {
       return this.$refs.mySwiper.swiper
     }
-  },
-  mounted () {
-    // current swiper instance
-    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-    console.log('this is current swiper instance object', this.swiper)
-    // this.swiper.slideTo(3, 1000, false)
   }
 }
 </script>

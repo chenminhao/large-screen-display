@@ -106,7 +106,6 @@ export default {
 
         // 图表option整理
         chartData[key - 1].forEach((v, i) => {
-          console.log(65 - i * 15 + '%', 57 - i * 15 + '%')
           pieSeries.push({
             name: '',
             type: 'pie',
@@ -119,7 +118,6 @@ export default {
               normal: {
                 position: 'center',
                 formatter: function (params, ticket, callback) {
-                  console.log(params)
                   return `${titles[key - 1]}`
                 },
                 color: '#2AA8FF'

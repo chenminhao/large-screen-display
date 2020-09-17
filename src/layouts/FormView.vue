@@ -141,7 +141,6 @@ export default {
       window.open(exportUrl)
     },
     afterUpload (e) {
-      // console.log(e)
       if (e.file.status === 'done') {
         this.$message.success('上传成功')
         this.$emit('changeYear', this.currentYear)

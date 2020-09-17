@@ -4,7 +4,7 @@
       <div class="visual-title">高等教育评估中心大数据可视化系统 - 第6屏 常模指标</div>
     </div>
     <div style="padding: 0 40px;">
-      <a-row gutter="30">
+      <a-row :gutter="30">
         <a-col :span="8">
           <div class="visual-bg">
             <!-- 本科生人数（人） -->
@@ -26,7 +26,7 @@
           </div>
           <div class="visual-bg marginT24">
             <!-- 生师比 -->
-            <bar :id="'ssb'" :title="'生师比'" />
+            <bar :id="'ssbs'" :title="'生师比'" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 本科专项教学经费（万元） -->

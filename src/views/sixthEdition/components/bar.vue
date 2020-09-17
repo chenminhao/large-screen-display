@@ -39,7 +39,7 @@ export default {
           xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
           data: [13, 17, 16, 18, 19, 21, 23]
         },
-        ssb: {
+        ssbs: {
           xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
           data: [13, 17, 16, 18, 19, 21, 23]
         },
@@ -154,37 +154,26 @@ export default {
             type: 'value'
           }
         ],
-        series: [
-          {
-            name: this.title,
-            type: 'bar',
-            barWidth: 20,
-            data: this.data[this.id].data,
-            itemStyle: {
-              normal: {
-                color: (params) => {
-                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
-                    0, 0, 0, 1,
-                    [
-                      { offset: 0, color: '#28a4fa' },
-                      { offset: 0.5, color: '#1c68a5' },
-                      { offset: 1, color: '#0c1936' }
-                    ]
-                  )
-                }
-                // label: {
-                //   show: true, // 开启显示
-                //   position: 'top', // 在上方显示
-                //   textStyle: { // 数值样式
-                //     color: '#fff',
-                //     fontSize: 10
-                //   }
-                // }
+        series: [{
+          name: this.title,
+          type: 'bar',
+          barWidth: 20,
+          data: this.data[this.id].data,
+          itemStyle: {
+            normal: {
+              color: (params) => {
+                return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    { offset: 0, color: '#28a4fa' },
+                    { offset: 0.5, color: '#1c68a5' },
+                    { offset: 1, color: '#0c1936' }
+                  ]
+                )
               }
             }
-
           }
-        ]
+        }]
       }
       this.myChart.setOption(option)
       setInterval(() => {
