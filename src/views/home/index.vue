@@ -2,12 +2,12 @@
 <template>
   <swiper class="fullScreen" :options="swiperOption" ref="mySwiper">
     <!-- slides -->
-    <!-- <swiper-slide>
+    <swiper-slide>
       <third-edition />
     </swiper-slide>
     <swiper-slide>
       <fourth-edition />
-    </swiper-slide> -->
+    </swiper-slide>
     <swiper-slide>
       <fifthEdition />
     </swiper-slide>

@@ -2,94 +2,59 @@
   <div>
     <a-row class="visual">
       <a-col class="visual-left" :span="7">
-        <div class="visual-bg padding12">
-          <p style="margin-bottom: 13px;">教授授课情况</p>
-          <a-row :gutter="16">
-            <a-col :span="6" v-for="(item,index) in Object.keys(data.left)" :key="index">
-              <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
-                <div class="in-rect">
-                  <p>
-                    <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
-                  </p>
-                  <p>{{ item }}</p>
-                </div>
-              </div>
-              <div v-else class="visual-info">
-                <p>
-                  <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
-                </p>
-                <p>{{ item }}</p>
-              </div>
-            </a-col>
-          </a-row>
+        <div class="visual-bg marginT24">
+          <!-- 历年学科结构分析 -->
+          <xkfx :id="'xkfx'" />
         </div>
         <div class="visual-bg marginT24">
-          <!-- 教授历年上讲台比例 -->
-          <doughnutChart :id="'jsbl'" :title="'教授历年上讲台比例'" />
+          <!-- 2017-2019专业布点数增长最多的专业排名前十 -->
+          <zyzz :id="'zyzz'" />
         </div>
         <div class="visual-bg marginT24">
-          <!-- 历年教授上讲台比例趋势（按高校类型） -->
-          <stackedAreaChart :id="'jsqs'" />
+          <!-- 2017-2019专业布点数减少最多的专业排名前十 -->
+          <zyjs :id="'zyjs'" />
         </div>
         <div class="visual-bg marginT24">
-          <!-- 高层次人才历年上讲台比例 -->
-          <doughnutChart :id="'gccbl'" :title="'高层次人才历年上讲台比例'" :height="'196px'" />
-        </div>
-        <div class="visual-bg marginT24">
-          <!-- 高层次人才总数区域分布以及历年变化情况 -->
-          <stackedAreaChart :id="'gccbh'" />
+          <!-- 新增专业动态 -->
         </div>
       </a-col>
       <a-col class="visual-central" :span="17">
         <a-row>
-          <a-col :span="10">
-            <div class="visual-title">高等教育评估中心大数据可视化系统 - 第4屏 师资情况</div>
+          <a-col :span="14">
+            <div class="visual-title">高等教育评估中心大数据可视化系统 - 第5屏 专业布局</div>
           </a-col>
         </a-row>
-        <div class="porR">
-          <p class="visual4-title">教师结构分析</p>
-          <!-- 教师结构分析 -->
-          <jsjgfx :id="'jsjgfx'" />
-        </div>
-        <a-row :gutter="30">
+        <a-row>
           <a-col :span="12">
             <div class="visual-bg marginT24">
-              <!-- 职称结构历年占比趋势 -->
-              <stackedAreaChartV2 :id="'zczb'" />
+              <!-- 各省份学科专业布点数 -->
+              <zyfb :id="'zyfb'" />
             </div>
           </a-col>
           <a-col :span="12">
             <div class="visual-bg marginT24">
-              <!-- 年龄结构历年占比趋势 -->
-              <nlzb :id="'nlzb'" />
+              <!-- 各省份学科专业布点数对比 -->
+              <zydb :id="'zydb'" />
             </div>
           </a-col>
         </a-row>
         <a-row :gutter="30">
-          <a-col :span="12">
+          <a-col :span="8">
             <div class="visual-bg marginT24">
-              <!-- 学位结构历年占比趋势 -->
-              <stackedAreaChartV2 :id="'xwzb'" />
+              <!-- 新增专业词云 -->
+              <zycy :id="'zycy'" />
             </div>
           </a-col>
-          <a-col :span="12">
+          <a-col :span="8">
             <div class="visual-bg marginT24">
-              <!-- 辅导员与心理咨询师数量历年趋势分析 -->
-              <doubleChart :id="'fdyzb'" />
+              <!-- 就业率最高的10个专业 -->
+              <jylpm :id="'jylpm'" />
             </div>
           </a-col>
-        </a-row>
-        <a-row :gutter="30">
-          <a-col :span="12">
+          <a-col :span="8">
             <div class="visual-bg marginT24">
-              <!-- 各学校类型教授学位教师占比趋势分析 -->
-              <stackedAreaChartV2 :id="'jszb'" />
-            </div>
-          </a-col>
-          <a-col :span="12">
-            <div class="visual-bg marginT24">
-              <!-- 各学校类型博士学位教师占比趋势分析 -->
-              <stackedAreaChartV2 :id="'bszb'" />
+              <!-- 各授予学位门类就业率分析 -->
+              <jylfx :id="'jylfx'" />
             </div>
           </a-col>
         </a-row>
@@ -100,9 +65,7 @@
 
 <script>
 import { PageView } from '@/layouts'
-import { doughnutChart, stackedAreaChart, stackedAreaChartV2, doubleChart } from '@/components/Charts'
-import { jsjgfx, xksj, nlzb, xxdjcg, xxlxcg } from './components'
-import ICountUp from 'vue-countup-v2'
+import { xkfx, zyzz, zyjs, zyfb, zydb, zycy, jylpm, jylfx } from './components'
 export default {
   data () {
     return {
@@ -128,16 +91,14 @@ export default {
   },
   components: {
     PageView,
-    doughnutChart,
-    stackedAreaChart,
-    stackedAreaChartV2,
-    doubleChart,
-    jsjgfx,
-    ICountUp,
-    xksj,
-    nlzb,
-    xxdjcg,
-    xxlxcg
+    xkfx,
+    zyzz,
+    zyjs,
+    zyfb,
+    zydb,
+    zycy,
+    jylpm,
+    jylfx
   },
   methods: {
   }
