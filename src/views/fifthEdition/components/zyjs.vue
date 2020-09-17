@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:240px;"></div>
+      <div :id="id" style="width:100%;height:222px;"></div>
     </a-spin>
   </div>
 </template>
@@ -28,21 +28,22 @@ export default {
       this.myChart && this.myChart.resize()
     },
     loadDom () {
-      var xAxis = ['教育部创新团', '黄大年式教学团队', 'NSFC创新研究群体', '科技部重点领域创新团队', '国家级教学团队', '省级高层次研究团队', '省部级教学团队']
-      var data = [683, 137, 364, 98, 796, 5211, 5234]
+      var xAxis = ['信息与计算科学', '信息管理与信息系统', '公共事业管理', '服装设计与工程', '艺术设计学', '服装与服饰设计', '电子科学与技术', '教育技术学', '电子信息科学与技术', '生物工程']
+      var data = [34, 22, 28, 20, 18, 17, 18, 14, 13, 11]
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById(this.id))
       this.myChart.clear()
       var currentIndex = -1
       const option = {
         title: {
-          text: '全国高层次教学团队情况',
+          text: '2017-2019专业布点数减少最多的专业排名前十',
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
-          left: 'center'
+          top: 10,
+          left: 10
         },
         tooltip: {
           trigger: 'axis',
@@ -110,8 +111,7 @@ export default {
                 color: '#233e64'
               }
             },
-            type: 'value',
-            max: 6000
+            type: 'value'
           }
         ],
         series: [
@@ -131,15 +131,15 @@ export default {
                       { offset: 1, color: '#0c1936' }
                     ]
                   )
-                },
-                label: {
-                  show: true, // 开启显示
-                  position: 'top', // 在上方显示
-                  textStyle: { // 数值样式
-                    color: '#fff',
-                    fontSize: 10
-                  }
                 }
+                // label: {
+                //   show: true, // 开启显示
+                //   position: 'top', // 在上方显示
+                //   textStyle: { // 数值样式
+                //     color: '#fff',
+                //     fontSize: 10
+                //   }
+                // }
               }
             }
 

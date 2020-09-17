@@ -1,6 +1,6 @@
 <template>
   <a-spin :spinning="loading">
-    <div style="width:100%;height:320px;" :id="id"></div>
+    <div style="width:100%;height:221px;" :id="id"></div>
   </a-spin>
 </template>
 
@@ -18,8 +18,6 @@ export default {
       from: null,
       to: null,
       loading: false,
-      legendData: [],
-      seriesData: [],
       option: null
     }
   },
@@ -33,23 +31,6 @@ export default {
     loadDom () {
       // 基于准备好的dom，初始化echarts实例
       var myChart = this.$echarts.init(document.getElementById(this.id))
-      var arr = [ { value: 3200, name: '综合院校' },
-        { value: 2700, name: '理工院校' },
-        { value: 1000, name: '师范院校' },
-        { value: 917, name: '财经院校' },
-        { value: 868, name: '医院院校' },
-        { value: 283, name: '政法院校' },
-        { value: 372, name: '艺术院校' },
-        { value: 120, name: '民族院校' },
-        { value: 100, name: '农业院校' },
-        { value: 230, name: '体育院校' },
-        { value: 110, name: '林业院校' }]
-      this.legendData = []
-      this.seriesData = []
-      arr.map(el => {
-        this.legendData.push(el.name)
-        this.seriesData.push(el.value)
-      })
       this.option = {
         title: {
           text: '各学校类型历年国家级教学成果奖情况',
@@ -59,7 +40,7 @@ export default {
             fontweight: 400
           },
           top: 10,
-          left: 'center'
+          left: 10
         },
         tooltip: {
           trigger: 'axis',
@@ -68,7 +49,7 @@ export default {
           }
         },
         legend: {
-          data: ['一等奖', '二等奖'],
+          data: ['2017', '2018', '2019'],
           right: 10,
           top: 30,
           icon: 'roundRect',
@@ -90,7 +71,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['一流学科', '一流大学', '普通本科', '合作协办', '新建本科', '独立本科'],
+            data: ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学'],
             axisTick: {
               show: false,
               alignWithLabel: false
@@ -132,10 +113,10 @@ export default {
         ],
         series: [
           {
-            name: '一等奖',
+            name: '2017',
             type: 'bar',
-            barWidth: 20,
-            data: [13, 17, 16, 18, 19, 21, 23],
+            data: [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4],
+            barGap: '0%',
             itemStyle: {
               normal: {
                 color: new this.$echarts.graphic.LinearGradient(
@@ -150,10 +131,28 @@ export default {
             }
           },
           {
-            name: '二等奖',
+            name: '2018',
             type: 'bar',
-            barWidth: 20,
-            data: [15, 20, 26, 28, 29, 30, 33],
+            barGap: '0%',
+            data: [1, 12, 3, 4, 5, 1, 12, 3, 4, 5, 1, 12],
+            itemStyle: {
+              normal: {
+                color: new this.$echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    { offset: 0, color: '#3065f3' }, // 柱图渐变色
+                    { offset: 0.5, color: '#2146a9' }, // 柱图渐变色
+                    { offset: 1, color: '#0c1737' } // 柱图渐变色
+                  ]
+                )
+              }
+            }
+          },
+          {
+            name: '2019',
+            type: 'bar',
+            barGap: '0%',
+            data: [1, 2, 9, 4, 1, 2, 9, 4, 1, 2, 9, 4],
             itemStyle: {
               normal: {
                 color: new this.$echarts.graphic.LinearGradient(

@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:222px;"></div>
+      <div :id="id" style="width:100%;height:305px;"></div>
     </a-spin>
   </div>
 </template>
@@ -11,13 +11,55 @@ export default {
   props: {
     id: {
       type: String,
-      default: null
+      default: ''
+    },
+    title: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
       myChart: null,
-      loading: false
+      loading: false,
+      data: {
+        bksrs: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        zrjsbl: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        cryxzc: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        xss: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        ssb: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        zxjxjf: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        zxsbl: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        bkzyzs: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        },
+        sjbksyjf: {
+          xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
+          data: [13, 17, 16, 18, 19, 21, 23]
+        }
+      }
     }
   },
   mounted () {
@@ -28,22 +70,20 @@ export default {
       this.myChart && this.myChart.resize()
     },
     loadDom () {
-      var xAxis = ['机器人工程', '智能科学与技术', '数据科学与大数据技术', '网络与新媒体', '商务英语', '数字媒体艺术', '健康服务与管理', '学前教育', '助产学', '网络空间安全']
-      var data = [160, 100, 364, 60, 80, 60, 50, 45, 42, 41]
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById(this.id))
       this.myChart.clear()
       var currentIndex = -1
       const option = {
         title: {
-          text: '2017-2019专业布点数增长最多的专业排名前十',
+          text: this.title,
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
           top: 10,
-          left: 10
+          left: 'center'
         },
         tooltip: {
           trigger: 'axis',
@@ -52,16 +92,16 @@ export default {
           }
         },
         grid: {
-          top: '20%',
+          top: '14%',
           left: '14%',
-          right: '12%',
-          bottom: '40%',
+          right: '10%',
+          bottom: '14%',
           containLabel: false
         },
         xAxis: [
           {
             type: 'category',
-            data: xAxis,
+            data: this.data[this.id].xAxis,
             axisTick: {
               show: false,
               alignWithLabel: false
@@ -75,7 +115,7 @@ export default {
             axisLabel: { // 坐标轴刻度标签的相关设置
               fontSize: 12,
               color: '#d0d0d0',
-              rotate: 35, // 字体倾斜
+              // rotate: 35, // 字体倾斜
               show: true,
               interval: 0,
               textStyle: {
@@ -116,10 +156,10 @@ export default {
         ],
         series: [
           {
-            name: '2017-2019专业布点数增长最多的专业排名前十',
+            name: this.title,
             type: 'bar',
             barWidth: 20,
-            data: data,
+            data: this.data[this.id].data,
             itemStyle: {
               normal: {
                 color: (params) => {

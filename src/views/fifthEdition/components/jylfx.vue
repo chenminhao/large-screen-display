@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:240px;"></div>
+      <div :id="id" style="width:100%;height:226px;"></div>
     </a-spin>
   </div>
 </template>
@@ -28,21 +28,22 @@ export default {
       this.myChart && this.myChart.resize()
     },
     loadDom () {
-      var xAxis = ['教育部创新团', '黄大年式教学团队', 'NSFC创新研究群体', '科技部重点领域创新团队', '国家级教学团队', '省级高层次研究团队', '省部级教学团队']
-      var data = [683, 137, 364, 98, 796, 5211, 5234]
+      var xAxis = ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学']
+      var data = [95, 94, 92, 92, 91, 90, 89, 88, 87, 86, 85, 84]
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById(this.id))
       this.myChart.clear()
       var currentIndex = -1
       const option = {
         title: {
-          text: '全国高层次教学团队情况',
+          text: '各授予学位门类就业率分析',
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
-          left: 'center'
+          top: 10,
+          left: 10
         },
         tooltip: {
           trigger: 'axis',
@@ -111,7 +112,7 @@ export default {
               }
             },
             type: 'value',
-            max: 6000
+            max: 100
           }
         ],
         series: [

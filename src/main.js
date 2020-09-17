@@ -12,6 +12,7 @@ import './utils/filter' // global filter
 import './style/indexModity.css'
 import 'xe-utils'
 import echarts from 'echarts'
+
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // require styles
