@@ -11,16 +11,83 @@ export default {
   props: {
     id: {
       type: String,
-      default: null
+      default: ''
+    },
+    province: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
       myChart: null,
-      xxdm: '',
-      from: null,
-      to: null,
-      loading: false
+      loading: false,
+      option: null,
+      data: [
+        {
+          d: [
+            { value: 3200, name: '综合院校' },
+            { value: 2700, name: '理工院校' },
+            { value: 1000, name: '师范院校' },
+            { value: 3100, name: '其他院校' }
+          ],
+          x: [
+            { value: 3200, name: '综合院校' },
+            { value: 2700, name: '理工院校' },
+            { value: 1000, name: '师范院校' },
+            { value: 917, name: '财经院校' },
+            { value: 868, name: '医院院校' },
+            { value: 283, name: '政法院校' },
+            { value: 372, name: '艺术院校' },
+            { value: 120, name: '民族院校' },
+            { value: 100, name: '农业院校' },
+            { value: 230, name: '体育院校' },
+            { value: 110, name: '林业院校' }
+          ]
+        },
+        {
+          d: [
+            { value: 3100, name: '综合院校' },
+            { value: 2000, name: '理工院校' },
+            { value: 900, name: '师范院校' },
+            { value: 3100, name: '其他院校' }
+          ],
+          x: [
+            { value: 3100, name: '综合院校' },
+            { value: 2000, name: '理工院校' },
+            { value: 900, name: '师范院校' },
+            { value: 917, name: '财经院校' },
+            { value: 268, name: '医院院校' },
+            { value: 883, name: '政法院校' },
+            { value: 372, name: '艺术院校' },
+            { value: 120, name: '民族院校' },
+            { value: 300, name: '农业院校' },
+            { value: 130, name: '体育院校' },
+            { value: 110, name: '林业院校' }
+          ]
+        },
+        {
+          d: [
+            { value: 1000, name: '综合院校' },
+            { value: 2600, name: '理工院校' },
+            { value: 1000, name: '师范院校' },
+            { value: 3100, name: '其他院校' }
+          ],
+          x: [
+            { value: 1000, name: '综合院校' },
+            { value: 2600, name: '理工院校' },
+            { value: 1000, name: '师范院校' },
+            { value: 217, name: '财经院校' },
+            { value: 868, name: '医院院校' },
+            { value: 283, name: '政法院校' },
+            { value: 372, name: '艺术院校' },
+            { value: 820, name: '民族院校' },
+            { value: 300, name: '农业院校' },
+            { value: 130, name: '体育院校' },
+            { value: 110, name: '林业院校' }
+          ]
+        }
+      ]
     }
   },
   mounted () {
@@ -34,9 +101,9 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById(this.id))
       this.myChart.clear()
-      const option = {
+      this.option = {
         title: {
-          text: '全国高校性质占比',
+          text: `高校性质占比`,
           textStyle: {
             color: '#fff',
             fontSize: 14,
@@ -56,7 +123,7 @@ export default {
         },
         series: [
           {
-            name: '访问来源',
+            name: '高校类型占比',
             type: 'pie',
             selectedMode: 'single',
             radius: [0, '30%'],
@@ -81,7 +148,7 @@ export default {
             ]
           },
           {
-            name: '访问来源',
+            name: '高校类型占比',
             type: 'pie',
             radius: ['40%', '55%'],
             label: {
@@ -117,7 +184,16 @@ export default {
           }
         ]
       }
-      this.myChart.setOption(option)
+      this.myChart.setOption(this.option)
+    }
+  },
+  watch: {
+    province (val) {
+      this.option.title.text = `${val}高校性质占比`
+      var radomNumber = Math.ceil(Math.random() * 10) % 3
+      this.option.series[0].data = this.data[radomNumber].d
+      this.option.series[1].data = this.data[radomNumber].x
+      this.myChart.setOption(this.option)
     }
   }
 }

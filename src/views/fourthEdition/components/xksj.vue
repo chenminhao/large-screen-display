@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" style="width:100%;height:232px"></div>
+  <div :id="id" style="width:100%;height:262px;"></div>
 </template>
 
 <script>
@@ -26,10 +26,10 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById(this.id))
       this.myChart.clear()
-      var currentIndex = -1
+      // var currentIndex = -1
       const option = {
         title: {
-          text: '录取文理科最高分和最低分',
+          text: '历年各学科门类专业教师数据',
           textStyle: {
             color: '#fff',
             fontSize: 12,
@@ -152,29 +152,29 @@ export default {
 
       }
       this.myChart.setOption(option)
-      setInterval(() => {
-        var dataLen = option.series[0].data.length
-        // 取消之前高亮的图形
-        this.myChart.dispatchAction({
-          type: 'downplay',
-          seriesIndex: 0,
-          dataIndex: currentIndex
-        })
-        currentIndex = (currentIndex + 1) % dataLen
-        this.myChart.setOption(option)
-        // 高亮当前图形
-        this.myChart.dispatchAction({
-          type: 'highlight',
-          seriesIndex: 0,
-          dataIndex: currentIndex
-        })
-        // 显示 tooltip
-        this.myChart.dispatchAction({
-          type: 'showTip',
-          seriesIndex: 0,
-          dataIndex: currentIndex
-        })
-      }, 1200)
+      // setInterval(() => {
+      //   var dataLen = option.series[0].data.length
+      //   // 取消之前高亮的图形
+      //   this.myChart.dispatchAction({
+      //     type: 'downplay',
+      //     seriesIndex: 0,
+      //     dataIndex: currentIndex
+      //   })
+      //   currentIndex = (currentIndex + 1) % dataLen
+      //   this.myChart.setOption(option)
+      //   // 高亮当前图形
+      //   this.myChart.dispatchAction({
+      //     type: 'highlight',
+      //     seriesIndex: 0,
+      //     dataIndex: currentIndex
+      //   })
+      //   // 显示 tooltip
+      //   this.myChart.dispatchAction({
+      //     type: 'showTip',
+      //     seriesIndex: 0,
+      //     dataIndex: currentIndex
+      //   })
+      // }, 1200)
     }
   }
 }

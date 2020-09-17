@@ -50,7 +50,6 @@ export default {
             fontweight: 400
           }
         },
-        color: ['#0476d7'],
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -141,8 +140,8 @@ export default {
                   show: true, // 开启显示
                   position: 'top', // 在上方显示
                   textStyle: { // 数值样式
-                    color: 'black',
-                    fontSize: 16
+                    color: '#fff',
+                    fontSize: 10
                   }
                 }
               }
@@ -177,7 +176,7 @@ export default {
           seriesIndex: 0,
           dataIndex: currentIndex
         })
-      }, 1200)
+      }, this.globalTimes)
     }
   }
 }

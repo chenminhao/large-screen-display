@@ -1,6 +1,6 @@
 <template>
   <a-spin :spinning="loading">
-    <div style="width:100%;height:196px;" :id="id"></div>
+    <div style="width:100%;height:320px;" :id="id"></div>
   </a-spin>
 </template>
 
@@ -33,16 +33,33 @@ export default {
     loadDom () {
       // 基于准备好的dom，初始化echarts实例
       var myChart = this.$echarts.init(document.getElementById(this.id))
+      var arr = [ { value: 3200, name: '综合院校' },
+        { value: 2700, name: '理工院校' },
+        { value: 1000, name: '师范院校' },
+        { value: 917, name: '财经院校' },
+        { value: 868, name: '医院院校' },
+        { value: 283, name: '政法院校' },
+        { value: 372, name: '艺术院校' },
+        { value: 120, name: '民族院校' },
+        { value: 100, name: '农业院校' },
+        { value: 230, name: '体育院校' },
+        { value: 110, name: '林业院校' }]
+      this.legendData = []
+      this.seriesData = []
+      arr.map(el => {
+        this.legendData.push(el.name)
+        this.seriesData.push(el.value)
+      })
       this.option = {
         title: {
-          text: '辅导员与心理咨询师数量历年趋势分析',
+          text: '各学校类型历年国家级教学成果奖情况',
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
           top: 10,
-          left: 10
+          left: 'center'
         },
         tooltip: {
           trigger: 'axis',
@@ -51,7 +68,7 @@ export default {
           }
         },
         legend: {
-          data: ['辅导员', '心里咨询人员'],
+          data: ['一等奖', '二等奖'],
           right: 10,
           top: 30,
           icon: 'roundRect',
@@ -64,8 +81,8 @@ export default {
         },
         grid: {
           top: 60,
-          left: '14%',
-          right: '4%',
+          left: '10%',
+          right: '6%',
           bottom: '14%',
           containLabel: false
         },
@@ -73,7 +90,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['2017', '2018', '2019'],
+            data: this.legendData,
             axisTick: {
               show: false,
               alignWithLabel: false
@@ -84,9 +101,13 @@ export default {
                 color: '#29A8FF'
               }
             },
+            splitLine: {
+              show: false
+            },
             axisLabel: { // 坐标轴刻度标签的相关设置
               fontSize: 12,
               color: '#d0d0d0',
+              rotate: 35, // 字体倾斜
               show: true,
               interval: 0,
               textStyle: {
@@ -98,11 +119,10 @@ export default {
         ],
         yAxis: [
           {
-            axisLabel: {
-              margin: 20,
-              textStyle: {
-                color: '#fff'
-              }
+            type: 'value',
+            axisTick: {
+              show: false,
+              alignWithLabel: false
             },
             axisLine: { // 坐标轴轴线相关设置。数学上的x轴
               show: true,
@@ -110,27 +130,20 @@ export default {
                 color: '#29A8FF'
               }
             },
-            axisTick: {
-              show: false,
-              alignWithLabel: false
+            axisLabel: { // 坐标轴刻度标签的相关设置
+              color: '#fff'
             },
             splitLine: {
-              show: false,
-              lineStyle: {
-                type: 'dashed', // 虚线
-                color: '#233e64'
-              }
-            },
-            type: 'value',
-            max: 30
+              show: false
+            }
           }
         ],
         series: [
           {
-            name: '辅导员',
+            name: '一等奖',
             type: 'bar',
-            barWidth: 20,
-            data: [100, 100, 100],
+            barWidth: 12,
+            data: this.seriesData,
             itemStyle: {
               normal: {
                 color: new this.$echarts.graphic.LinearGradient(
@@ -145,10 +158,10 @@ export default {
             }
           },
           {
-            name: '心里咨询人员',
+            name: '二等奖',
             type: 'bar',
-            barWidth: 20,
-            data: [20, 20, 200],
+            barWidth: 12,
+            data: this.seriesData,
             itemStyle: {
               normal: {
                 color: new this.$echarts.graphic.LinearGradient(

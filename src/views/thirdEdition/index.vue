@@ -81,7 +81,7 @@
           <li v-for="(item,index) in navList" @click="newIndex=index" :class="newIndex===index?'active pull-left':'pull-left'" :key="index">{{ item }}</li>
         </ul>
         <div class="visual-map porR">
-          <maps />
+          <maps @openData="openData"/>
           <div class="visual-map-title">全国高校分布</div>
           <div class="visual-map-info">
             <div class="visual-map-block">
@@ -108,10 +108,10 @@
         </div>
         <a-row>
           <a-col :span="12">
-            <gxxz :id="'gxxz'" />
+            <gxxz :id="'gxxz'" :province="province"/>
           </a-col>
           <a-col :span="12">
-            <gxlx :id="'gxlx'" />
+            <gxlx :id="'gxlx'" :province="province"/>
           </a-col>
         </a-row>
       </a-col>
@@ -214,6 +214,7 @@ import ICountUp from 'vue-countup-v2'
 export default {
   data () {
     return {
+      province: '',
       spinning: false,
       newIndex: 0,
       navList: ['全国高校', '一流大学', '一流学科'],
@@ -254,24 +255,8 @@ export default {
     ICountUp
   },
   methods: {
-    // 全屏事件
-    requestFullScreen () {
-      // 判断各种浏览器，找到正确的方法
-      var element = document.getElementById('homeFull')
-
-      var requestMethod = element.requestFullScreen || // W3C
-        element.webkitRequestFullScreen || // Chrome等
-        element.mozRequestFullScreen || // FireFox
-        element.msRequestFullScreen // IE11
-
-      if (requestMethod) {
-        requestMethod.call(element)
-      } else if (typeof window.ActiveXObject !== 'undefined') { // for Internet Explorer
-        // var wscript = new ActiveXObject('WScript.Shell')
-        // if (wscript !== null) {
-        //   wscript.SendKeys('{F11}')
-        // }
-      }
+    openData (val) {
+      this.province = val.name
     }
   }
 }
@@ -283,7 +268,8 @@ p {
   padding: 0;
 }
 .pink {
-  color: #eb45a1;
+  // color: #eb45a1;
+  color: #29a8ff;
 }
 .blue {
   color: #29a4ff;
@@ -485,7 +471,8 @@ p {
     p:nth-child(1) {
       font-size: 18px;
       font-weight: 800;
-      color: #e53ba5;
+      // color: #e53ba5;
+      color: #29a8ff;
     }
     p:nth-child(2) {
       font-size: 12px;

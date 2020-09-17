@@ -61,16 +61,34 @@ export default {
             {
               name: '年龄结构历年占比趋势',
               type: 'pie',
+              startAngle: 180,
+              radius: [0, '55%'],
               label: {
-                position: 'outside',
-                formatter: '{d}%',
-                color: '#fff'
+                normal: {
+                  formatter: function (params, ticket, callback) {
+                    return '{white|' + params.name + '}\n{yellow|' + params.value + '%' + '}'
+                  },
+                  rich: {
+                    yellow: {
+                      color: '#fff',
+                      fontSize: 10,
+                      padding: [3, 0],
+                      align: 'center'
+                    },
+                    white: {
+                      color: '#fff',
+                      align: 'center',
+                      fontSize: 10,
+                      padding: [0, 0]
+                    }
+                  }
+                }
               },
               labelLine: {
                 normal: {
                   smooth: 0.2, // 此处是改变折线的长度
                   length: 5,
-                  length2: 4
+                  length2: 5
                 },
                 lineStyle: {
                   color: '#fff'

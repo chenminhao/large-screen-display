@@ -30,111 +30,157 @@ export default {
       this.myChart && this.myChart.resize()
     },
     loadDom () {
-      const color = ['#2d99fa', '#2b9ffd', '#eb479f', '#358bf6']
-      const chartData = [{
-        name: '正高级',
-        value: 17.25,
-        unit: '元'
-      },
-      {
-        name: '副高级',
-        value: 33.35,
-        unit: '元'
-      },
-      {
-        name: '中级',
-        value: 37.83,
-        unit: '元'
-      },
-      {
-        name: '其他',
-        value: 11.57,
-        unit: '元'
-      }
-      ]
-      const arrName = []
-      const arrValue = []
-      let sum = 0
-      const pieSeries = []
-      const lineYAxis = []
-
-      // 数据处理
-      chartData.forEach((v, i) => {
-        arrName.push(v.name)
-        arrValue.push(v.value)
-        sum = sum + v.value
-      })
-
-      // 图表option整理
-      chartData.forEach((v, i) => {
-        pieSeries.push({
-          name: '学历',
-          type: 'pie',
-          clockWise: true,
-          hoverAnimation: false,
-          radius: [65 - i * 15 + '%', 57 - i * 15 + '%'],
-          center: ['50%', '50%'],
-          label: {
-            show: false
+      // 基于准备好的dom，初始化echarts实例
+      for (let key = 1; key < 5; key++) {
+        const color = ['#2d99fa', '#2b9ffd', '#eb479f', '#358bf6']
+        const titles = ['职称占比', '学位占比', '年龄占比', '导师占比']
+        const chartData = [
+          [{
+            name: '正高级',
+            value: 17.25
           },
-          data: [{
-            value: v.value,
-            name: v.name
-          }, {
-            value: sum - v.value,
-            name: '',
-            itemStyle: {
-              color: 'rgba(0,0,0,0)'
-            }
-          }]
-        })
-        pieSeries.push({
-          name: '',
-          type: 'pie',
-          silent: true,
-          z: 1,
-          clockWise: true, // 顺时加载
-          hoverAnimation: false, // 鼠标移入变大
-          radius: [65 - i * 15 + '%', 57 - i * 15 + '%'],
-          center: ['50%', '50%'],
-          label: {
-            show: false
+          {
+            name: '副高级',
+            value: 33.35
           },
-          data: [{
-            value: 7.5,
-            itemStyle: {
-              color: '#122043'
-            }
-          }, {
-            value: 2.5,
-            name: '',
-            itemStyle: {
-              color: 'rgba(0,0,0,0)'
-            }
+          {
+            name: '中级',
+            value: 37.83
+          },
+          {
+            name: '其他',
+            value: 11.57
+          }],
+          [{
+            name: '博士',
+            value: 40.46
+          },
+          {
+            name: '硕士',
+            value: 45.15
+          },
+          {
+            name: '其他',
+            value: 14.39
+          }],
+          [{
+            name: '35岁以下',
+            value: 26.62
+          },
+          {
+            name: '36~45岁',
+            value: 41.17
+          },
+          {
+            name: '46~55岁',
+            value: 23.68
+          },
+          {
+            name: '56岁以上',
+            value: 8.53
+          }], [{
+            name: '硕士研究生',
+            value: 17.66
+          },
+          {
+            name: '博士研究生',
+            value: 75.15
+          },
+          {
+            name: '其他',
+            value: 7.18
           }]
+        ]
+        const arrName = []
+        const arrValue = []
+        let sum = 0
+        const pieSeries = []
+        const lineYAxis = []
+
+        // 数据处理
+        chartData[key - 1].forEach((v, i) => {
+          arrName.push(v.name)
+          arrValue.push(v.value)
+          sum = sum + v.value
         })
-        v.percent = (v.value / sum * 100).toFixed(1) + '%'
-        lineYAxis.push({
-          value: i,
-          textStyle: {
-            rich: {
-              circle: {
-                color: color[i],
-                padding: [0, 5]
+
+        // 图表option整理
+        chartData[key - 1].forEach((v, i) => {
+          console.log(65 - i * 15 + '%', 57 - i * 15 + '%')
+          pieSeries.push({
+            name: '',
+            type: 'pie',
+            clockWise: true,
+            hoverAnimation: false,
+            radius: [90 - i * 15 + '%', 80 - i * 15 + '%'],
+            center: ['50%', '66%'],
+            label: {
+              show: false,
+              normal: {
+                position: 'center',
+                formatter: function (params, ticket, callback) {
+                  console.log(params)
+                  return `${titles[key - 1]}`
+                },
+                color: '#2AA8FF'
+              }
+            },
+            data: [{
+              value: v.value,
+              name: v.name
+            }, {
+              value: sum - v.value,
+              name: '',
+              itemStyle: {
+                color: 'rgba(0,0,0,0)'
+              }
+            }]
+          })
+          pieSeries.push({
+            name: '',
+            type: 'pie',
+            silent: true,
+            z: 1,
+            clockWise: true, // 顺时加载
+            hoverAnimation: false, // 鼠标移入变大
+            radius: [90 - i * 15 + '%', 80 - i * 15 + '%'],
+            center: ['50%', '66%'],
+            label: {
+              show: false
+            },
+            data: [{
+              value: 7.5,
+              itemStyle: {
+                color: '#122043'
+              }
+            }, {
+              value: 2.5,
+              name: '',
+              itemStyle: {
+                color: 'rgba(0,0,0,0)'
+              }
+            }]
+          })
+          v.percent = (v.value / sum * 100).toFixed(1) + '%'
+          lineYAxis.push({
+            value: i,
+            textStyle: {
+              rich: {
+                circle: {
+                  color: color[i],
+                  padding: [0, 5]
+                }
               }
             }
-          }
+          })
         })
-      })
-      // 基于准备好的dom，初始化echarts实例
-      for (let i = 1; i < 5; i++) {
-        this.myChart = this.$echarts.init(document.getElementById(`${this.id}-${i}`))
+        this.myChart = this.$echarts.init(document.getElementById(`${this.id}-${key}`))
         this.myChart.clear()
         const option = {
           color: color,
           grid: {
-            top: '28%',
-            bottom: '54%',
+            top: '38%',
+            bottom: '44%',
             left: '50%',
             containLabel: false
           },
@@ -149,8 +195,7 @@ export default {
             },
             axisLabel: {
               formatter: function (params) {
-                const item = chartData[params]
-                console.log(item)
+                const item = chartData[key - 1][params]
                 return '{name|' + item.name + '}{value|' + item.value + '%' + '}'
               },
               interval: 0,
@@ -190,7 +235,7 @@ export default {
   display: flex;
   > div {
     flex: 1;
-    height: 312px;
+    height: 320px;
   }
 }
 </style>

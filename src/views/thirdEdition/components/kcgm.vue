@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:230px;margin: 0 auto;"></div>
+      <div :id="id" style="width:100%;height:275px;"></div>
       <ul class="kcgm-ul clearfix">
-        <li @click="newIndex=1" :class="newIndex===1?'active':''">公共必修课</li>
-        <li @click="newIndex=2" :class="newIndex===2?'active':''">专业课</li>
-        <li @click="newIndex=3" :class="newIndex===3?'active':''">公共选修课</li>
+        <li @click="newIndex=0" :class="newIndex===0?'active':''">公共必修课</li>
+        <li @click="newIndex=1" :class="newIndex===1?'active':''">专业课</li>
+        <li @click="newIndex=2" :class="newIndex===2?'active':''">公共选修课</li>
       </ul>
     </a-spin>
   </div>
@@ -23,7 +23,7 @@ export default {
     return {
       myChart: null,
       loading: false,
-      newIndex: 1
+      newIndex: 0
     }
   },
   mounted () {
@@ -55,6 +55,7 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           }
         },
+        color: ['#eb45a1', '#29a4ff', '#ef886f'],
         radar: {
           center: ['50%', '50%'],
           radius: 70,
@@ -66,13 +67,13 @@ export default {
           axisLine: {
             show: true,
             lineStyle: {
-              color: '#0e294b'
+              color: '#1b3a69'
             }
           },
           splitLine: {
             show: true,
             lineStyle: {
-              color: '#0e294b'
+              color: '#1b3a69'
             }
           },
           splitArea: {
@@ -81,48 +82,29 @@ export default {
             }
           },
           indicator: [
-            { name: '20人以下' },
-            { name: '20~40人' },
-            { name: '40~60人' },
-            { name: '60~80人' },
-            { name: '80~100人' },
-            { name: '100人以上' }
+            { name: '20人以下', max: 1000 },
+            { name: '20~40人', max: 1000 },
+            { name: '40~60人', max: 1000 },
+            { name: '60~80人', max: 1000 },
+            { name: '80~100人', max: 1000 },
+            { name: '100人以上', max: 1000 }
           ]
         },
         series: [{
           type: 'radar',
-          areaStyle: {
-            normal: {
-              // color: new this.$echarts.graphic.LinearGradient(
-              //   0, 0, 1, 1,
-              //   [
-              //     { offset: 0, color: '#d5389c' },
-              //     { offset: 0.5, color: '#1a1733' },
-              //     { offset: 1, color: '#d5389c' }
-              //   ]
-              // )
-            }
-          },
-          // itemStyle: {
-          //   color: '#fff',
-          //   borderColor: '#d5389c',
-          //   borderWidth: 1
-          // },
-          // lineStyle: {
-          //   normal: {
-          //     type: 'solid',
-          //     color: '#eb45a1',
-          //     width: 1
-          //   }
-          // },
+          areaStyle: {},
           data: [
             {
-              value: [4300, 10000, 28000, 35000, 50000, 19000],
-              name: '预算分配（Allocated Budget）'
+              value: [430, 1000, 800, 500, 500, 900],
+              name: '公共必修课'
             },
             {
-              value: [5000, 14000, 28000, 31000, 42000, 21000],
-              name: '实际开销（Actual Spending）'
+              value: [500, 900, 800, 300, 400, 100],
+              name: '专业课'
+            },
+            {
+              value: [550, 400, 800, 500, 400, 200],
+              name: '公共选修课'
             }
           ]
         }]
@@ -137,6 +119,7 @@ export default {
           dataIndex: currentIndex
         })
         currentIndex = (currentIndex + 1) % dataLen
+        this.newIndex = currentIndex
         this.myChart.setOption(option)
         // 高亮当前图形
         this.myChart.dispatchAction({
@@ -150,7 +133,7 @@ export default {
           seriesIndex: 0,
           dataIndex: currentIndex
         })
-      }, 1200)
+      }, this.globalTimes)
     }
   }
 }

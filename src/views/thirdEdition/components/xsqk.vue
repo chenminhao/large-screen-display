@@ -45,6 +45,7 @@ export default {
             fontweight: 400
           }
         },
+        color: ['#E93CA7', '#29A8FF'],
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -57,6 +58,9 @@ export default {
         legend: {
           top: 20,
           right: 20,
+          icon: 'roundRect',
+          itemWidth: 18,
+          itemHeight: 4, // 修改icon图形大小
           textStyle: {
             color: '#fff'
           },

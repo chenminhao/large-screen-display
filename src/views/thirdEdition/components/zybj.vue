@@ -47,7 +47,7 @@ export default {
             fontweight: 400
           }
         },
-        color: ['#0476d7'],
+        color: ['#E93CA7', '#29A8FF'],
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -57,6 +57,9 @@ export default {
         legend: {
           top: 20,
           right: 20,
+          icon: 'roundRect',
+          itemWidth: 18,
+          itemHeight: 4, // 修改icon图形大小
           textStyle: {
             color: '#fff'
           },
@@ -131,21 +134,15 @@ export default {
             data: data,
             itemStyle: {
               normal: {
-                color: new this.$echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                    { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
-                  ]
-                ),
-                label: {
-                  show: true, // 开启显示
-                  position: 'top', // 在上方显示
-                  textStyle: { // 数值样式
-                    color: 'black',
-                    fontSize: 16
-                  }
+                color: (params) => {
+                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#28a4fa' }, // 柱图渐变色
+                      { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
+                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                    ]
+                  )
                 }
               }
             }
@@ -165,6 +162,33 @@ export default {
         ]
       }
       this.myChart.setOption(option)
+      var currentIndex = -1
+      setInterval(() => {
+        var dataLen = option.series[0].data.length
+        // 取消之前高亮的图形
+        this.myChart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        currentIndex = (currentIndex + 1) % dataLen
+        // if (currentIndex + 1 === dataLen) {
+        //   this.newIndex = this.newIndex % 3 + 1
+        // }
+        this.myChart.setOption(option)
+        // 高亮当前图形
+        this.myChart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        // 显示 tooltip
+        this.myChart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+      }, this.globalTimes)
     }
   }
 }

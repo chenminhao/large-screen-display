@@ -1,27 +1,41 @@
 <template>
-  <div id="map" class="marB20" style="width:100%;height:680px;"></div>
+  <div id="map" class="marB20" style="width:100%;height:660px;"></div>
 </template>
 
 <script>
-// import { getBshj } from '@/api/swjh'
 import china from './china.json'
 import mapData from './data.json'
 export default {
+  props: {
+    openData: {
+      type: Function,
+      default: () => {}
+    }
+  },
   data () {
     return {
       myChart: null,
-      maxSf: ''
+      option: null,
+      mapData: [],
+      currentIndex: -1
     }
   },
+  created () {
+    this.mapData = this.sortByKey(mapData, 'value')
+  },
   mounted () {
-    this.$nextTick(() => {
+    this.loadDom()
+  },
+  methods: {
+    // 更新数据
+    loadDom () {
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById('map'))
       this.myChart.clear()
       this.myChart.showLoading()
       this.$echarts.registerMap('china', china)
       this.myChart.hideLoading()
-      const options = {
+      this.option = {
         tooltip: {
           triggerOn: 'mousemove',
           formatter: function (params) {
@@ -35,36 +49,12 @@ export default {
 
         },
         visualMap: {
-          min: 0,
-          max: 1000,
-          left: 26,
-          bottom: 40,
-          showLabel: !0,
-          text: ['高', '低'],
-          pieces: [{
-            gt: 100,
-            label: '> 100 人',
-            color: 'rgba(57, 111, 255)'
-          }, {
-            gte: 10,
-            lte: 100,
-            label: '10 - 100 人',
-            color: 'rgba(50, 97, 222)'
-          }, {
-            gte: 1,
-            lt: 10,
-            label: '1 - 9 人',
-            color: 'rgba(42, 82, 189)'
-          }, {
-            gt: 0,
-            lt: 1,
-            label: '疑似',
-            color: 'rgba(35, 68, 156)'
-          }, {
-            value: 0,
-            color: 'rgba(27, 53, 122)'
-          }],
-          show: false
+          type: 'continuous',
+          orient: 'horizontal',
+          max: 70,
+          inRange: {
+            color: ['#0B1533', '#2b62a2', '#45a1fd']
+          }
         },
         geo: {
           map: 'china',
@@ -84,9 +74,9 @@ export default {
           },
           itemStyle: {
             normal: {
-              shadowBlur: 1,
-              shadowColor: 'rgba(18, 32, 70,0.4)',
-              borderColor: 'rgba(18, 32, 70)'
+              areaColor: '#0d1940',
+              borderColor: '#65b2c3',
+              borderWidth: 1.5
             },
             emphasis: {
               areaColor: 'rgba(23, 240, 204)',
@@ -100,38 +90,46 @@ export default {
           name: '地域分布',
           type: 'map',
           geoIndex: 0,
-          data: mapData
+          data: this.mapData
         }]
       }
-      this.myChart.setOption(options)
-    })
-  },
-  methods: {
-    // 更新数据
-    getData () {
-      // this.spinning = true
-      // getBshj().then(res => {
-      //   var obj = {
-      //     xxmc: '合计',
-      //     申报专业点总数: this.totalSum(res.result, '申报专业点总数'),
-      //     入选专业点总数: this.totalSum(res.result, '入选专业点总数'),
-      //     未入选专业点总数: this.totalSum(res.result, '未入选专业点总数')
-      //   }
-      //   obj['入选比例'] = (obj['入选专业点总数'] / obj['申报专业点总数'] * 100).toFixed(2)
-      //   res.result.push(obj)
-      //   res.result.map((el, index) => {
-      //     el.key = index
-      //   })
-      //   this.data = res.result
-      //   this.spinning = false
-      // })
+      this.myChart.setOption(this.option)
+      this.timedTasks()
+      setInterval(() => {
+        this.timedTasks()
+      }, 4000)
     },
-    totalSum (val, key) {
-      var sum = 0
-      val.map(el => {
-        sum += Number(el[key])
+    // 定时任务
+    timedTasks () {
+      var dataLen = 4
+      // 取消之前高亮的图形
+      this.myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+        dataIndex: this.currentIndex
       })
-      return sum
+      this.currentIndex = (this.currentIndex + 1) % dataLen
+      this.$emit('openData', this.mapData[this.currentIndex])
+      this.myChart.setOption(this.option)
+      // 高亮当前图形
+      this.myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: this.currentIndex
+      })
+      // 显示 tooltip
+      this.myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: this.currentIndex
+      })
+    },
+    sortByKey (array, key) {
+      return array.sort(function (a, b) {
+        var x = b[key]
+        var y = a[key]
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0))
+      })
     }
   }
 }

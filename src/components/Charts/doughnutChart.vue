@@ -2,7 +2,7 @@
   <div style="width:100%;">
     <a-spin :spinning="loading">
       <div class="doughnut-block">
-        <div v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
+        <div :style="{height:height?height:'198px'}" v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
       </div>
     </a-spin>
   </div>
@@ -13,7 +13,15 @@ export default {
   props: {
     id: {
       type: String,
-      default: null
+      default: ''
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    height: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -44,7 +52,7 @@ export default {
         myChart.clear()
         const option = {
           title: {
-            text: i === 1 ? '全国高校类型占比' : '',
+            text: i === 1 ? this.title : '',
             textStyle: {
               color: '#fff',
               fontSize: 14,
@@ -55,27 +63,36 @@ export default {
           },
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b}: {c} ({d}%)'
+            formatter: '{a} <br/>{b}: {c} ({d}%)',
+            confine: true// 将此限制打开后tooltip将不再溢出
           },
           series: [
             {
-              name: '全国高校类型占比',
+              name: this.title,
               type: 'pie',
+              startAngle: 180,
               radius: ['40%', '55%'],
+              center: ['50%', '60%'],
               avoidLabelOverlap: false,
               label: {
-                position: 'outside',
-                formatter: '{d}%',
-                color: '#fff'
-              },
-              labelLine: {
                 normal: {
-                  smooth: 0.2, // 此处是改变折线的长度
-                  length: 5,
-                  length2: 4
-                },
-                lineStyle: {
-                  color: '#fff'
+                  formatter: function (params, ticket, callback) {
+                    return '{white|' + params.name + '}\n{yellow|' + params.value + '%' + '}'
+                  },
+                  rich: {
+                    yellow: {
+                      color: '#fff',
+                      fontSize: 10,
+                      padding: [5, 0],
+                      align: 'center'
+                    },
+                    white: {
+                      color: '#fff',
+                      align: 'center',
+                      fontSize: 10,
+                      padding: [0, 0]
+                    }
+                  }
                 }
               },
               itemStyle: {
@@ -97,9 +114,8 @@ export default {
 <style lang="less" scoped>
 .doughnut-block {
   display: flex;
-  >div{
+  > div {
     flex: 1;
-    height:198px;
   }
 }
 </style>

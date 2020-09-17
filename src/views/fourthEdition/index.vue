@@ -3,7 +3,7 @@
     <a-row class="visual">
       <a-col class="visual-left" :span="7">
         <div class="visual-bg padding12">
-          <p class="marginB16">教授授课情况</p>
+          <p style="margin-bottom: 13px;">教授授课情况</p>
           <a-row :gutter="16">
             <a-col :span="6" v-for="(item,index) in Object.keys(data.left)" :key="index">
               <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
@@ -23,38 +23,39 @@
             </a-col>
           </a-row>
         </div>
-        <div class="visual-bg marginT12">
+        <div class="visual-bg marginT24">
           <!-- 教授历年上讲台比例 -->
-          <doughnutChart :id="'jsbl'" />
+          <doughnutChart :id="'jsbl'" :title="'教授历年上讲台比例'" />
         </div>
-        <div class="visual-bg marginT12">
+        <div class="visual-bg marginT24">
           <!-- 历年教授上讲台比例趋势（按高校类型） -->
           <stackedAreaChart :id="'jsqs'" />
         </div>
-        <div class="visual-bg marginT12">
+        <div class="visual-bg marginT24">
           <!-- 高层次人才历年上讲台比例 -->
-          <doughnutChart :id="'gccbl'" />
+          <doughnutChart :id="'gccbl'" :title="'高层次人才历年上讲台比例'" :height="'196px'" />
         </div>
-        <div class="visual-bg marginT12">
+        <div class="visual-bg marginT24">
           <!-- 高层次人才总数区域分布以及历年变化情况 -->
           <stackedAreaChart :id="'gccbh'" />
         </div>
       </a-col>
       <a-col class="visual-central" :span="10">
         <div class="visual-title">高等教育评估中心大数据可视化系统 - 第4屏 师资情况</div>
-        <div>
+        <div class="porR">
+          <p class="visual4-title">教师结构分析</p>
           <!-- 教师结构分析 -->
           <jsjgfx :id="'jsjgfx'" />
         </div>
         <a-row :gutter="30">
           <a-col :span="12">
-            <div class="visual-bg marginT12">
+            <div class="visual-bg marginT24">
               <!-- 职称结构历年占比趋势 -->
               <stackedAreaChartV2 :id="'zczb'" />
             </div>
           </a-col>
           <a-col :span="12">
-            <div class="visual-bg marginT12">
+            <div class="visual-bg marginT24">
               <!-- 年龄结构历年占比趋势 -->
               <nlzb :id="'nlzb'" />
             </div>
@@ -62,13 +63,13 @@
         </a-row>
         <a-row :gutter="30">
           <a-col :span="12">
-            <div class="visual-bg marginT12">
+            <div class="visual-bg marginT24">
               <!-- 学位结构历年占比趋势 -->
               <stackedAreaChartV2 :id="'xwzb'" />
             </div>
           </a-col>
           <a-col :span="12">
-            <div class="visual-bg marginT12">
+            <div class="visual-bg marginT24">
               <!-- 辅导员与心理咨询师数量历年趋势分析 -->
               <doubleChart :id="'fdyzb'" />
             </div>
@@ -76,13 +77,13 @@
         </a-row>
         <a-row :gutter="30">
           <a-col :span="12">
-            <div class="visual-bg marginT12">
+            <div class="visual-bg marginT24">
               <!-- 各学校类型教授学位教师占比趋势分析 -->
               <stackedAreaChartV2 :id="'jszb'" />
             </div>
           </a-col>
           <a-col :span="12">
-            <div class="visual-bg marginT12">
+            <div class="visual-bg marginT24">
               <!-- 各学校类型博士学位教师占比趋势分析 -->
               <stackedAreaChartV2 :id="'bszb'" />
             </div>
@@ -90,19 +91,10 @@
         </a-row>
       </a-col>
       <a-col class="visual-right" :span="7">
-        <div class="visual-bg marginT12">
+        <div class="visual-bg">
           <a-row :gutter="16">
-            <p>教授授课情况</p>
             <a-col :span="12" v-for="(item,index) in Object.keys(data.right)" :key="index">
-              <div v-if="item==='全国全日制在校生'" class="bg-right out-rect">
-                <div class="in-rect">
-                  <p>
-                    <ICountUp :start-val="0" :end-val="data.right[item]" :options="options" :decimals="0" :duration="3000" />万
-                  </p>
-                  <p>{{ item }}</p>
-                </div>
-              </div>
-              <div v-else class="visual-info">
+              <div class="visual-map-blocks">
                 <p>
                   <ICountUp :start-val="0" :end-val="data.right[item]" :options="options" :decimals="0" :duration="3000" />万
                 </p>
@@ -115,9 +107,9 @@
         </div>
         <div class="visual-bg marginT24">
           <!-- 国家级教学成果奖数据分析 (各学校类型历年国家级教学成果奖情况) -->
-          <doubleChart :id="'xxdjcg'" />
+          <xxdjcg :id="'xxdjcg'" />
           <!-- 各学校类型历年国家级教学成果奖情况 -->
-          <doubleChart :id="'xxlxcg'" />
+          <xxlxcg :id="'xxlxcg'" />
         </div>
       </a-col>
     </a-row>
@@ -127,7 +119,7 @@
 <script>
 import { PageView } from '@/layouts'
 import { doughnutChart, stackedAreaChart, stackedAreaChartV2, doubleChart } from '@/components/Charts'
-import { jsjgfx, xksj, nlzb } from './components'
+import { jsjgfx, xksj, nlzb, xxdjcg, xxlxcg } from './components'
 import ICountUp from 'vue-countup-v2'
 export default {
   data () {
@@ -161,28 +153,11 @@ export default {
     jsjgfx,
     ICountUp,
     xksj,
-    nlzb
+    nlzb,
+    xxdjcg,
+    xxlxcg
   },
   methods: {
-    // 全屏事件
-    requestFullScreen () {
-      // 判断各种浏览器，找到正确的方法
-      var element = document.getElementById('homeFull')
-
-      var requestMethod = element.requestFullScreen || // W3C
-        element.webkitRequestFullScreen || // Chrome等
-        element.mozRequestFullScreen || // FireFox
-        element.msRequestFullScreen // IE11
-
-      if (requestMethod) {
-        requestMethod.call(element)
-      } else if (typeof window.ActiveXObject !== 'undefined') { // for Internet Explorer
-        // var wscript = new ActiveXObject('WScript.Shell')
-        // if (wscript !== null) {
-        //   wscript.SendKeys('{F11}')
-        // }
-      }
-    }
   }
 }
 </script>
@@ -198,7 +173,7 @@ p {
 .blue {
   color: #29a4ff;
 }
-.marginT12 {
+.marginT24 {
   margin-top: 12px;
 }
 .marginT24 {
@@ -430,5 +405,29 @@ p {
   .in-rect {
     background: linear-gradient(135deg, transparent 8px, #080e27 0) top right;
   }
+}
+.visual-map-blocks {
+  margin-bottom: 11px;
+  padding: 8px;
+  text-align: center;
+  p:nth-child(1) {
+    font-size: 18px;
+    font-weight: 800;
+    color: #29a8ff;
+  }
+  p:nth-child(2) {
+    font-size: 12px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 21px;
+  }
+}
+.visual4-title {
+  position: absolute;
+  top: 38px;
+  left: 30px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
 }
 </style>

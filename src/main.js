@@ -17,6 +17,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
 import 'swiper/dist/css/swiper.css'
 Vue.prototype.$echarts = echarts
+Vue.prototype.globalTimes = 3000
 Vue.config.productionTip = false
 Vue.use(VueAxios)
 

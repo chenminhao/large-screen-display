@@ -125,7 +125,7 @@ export default {
           break
         case 'xwzb':
           this.option.title.text = '学位结构历年占比趋势'
-          this.colorList = ['#E93CA7', '#29A8FF', '#7E8082']
+          this.colorList = ['#E93CA7', '#29A8FF', '#6818CE']
           this.option.color = this.colorList.concat()
           this.option.legend.data = ['博士', '硕士', '其他']
           this.option.series = [{

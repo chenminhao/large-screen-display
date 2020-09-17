@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:228px;"></div>
+      <div :id="id" style="width:100%;height:240px;"></div>
     </a-spin>
   </div>
 </template>
@@ -169,7 +169,7 @@ export default {
           seriesIndex: 0,
           dataIndex: currentIndex
         })
-      }, 1200)
+      }, 3000)
     }
   }
 }

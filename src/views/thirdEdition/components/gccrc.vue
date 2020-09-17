@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" style="width:100%;height:232px"></div>
+  <div :id="id" style="width:100%;height:237px;"></div>
 </template>
 
 <script>
@@ -53,6 +53,8 @@ export default {
         },
         legend: {
           top: 20,
+          itemWidth: 18,
+          itemHeight: 4, // 修改icon图形大小
           textStyle: {
             color: '#fff'
           },
@@ -187,7 +189,7 @@ export default {
           seriesIndex: 0,
           dataIndex: currentIndex
         })
-      }, 1200)
+      }, this.globalTimes)
     }
   }
 }
