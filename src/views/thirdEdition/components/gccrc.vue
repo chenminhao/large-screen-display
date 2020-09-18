@@ -195,8 +195,14 @@ export default {
     }
   },
   watch: {
-    globalSize (val) {
-      this.resize()
+    globalSize: {
+      handler (newName, oldName) {
+        console.log('测试')
+        this.resize()
+      },
+      // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
+      immediate: true,
+      deep: true
     }
   }
 }
