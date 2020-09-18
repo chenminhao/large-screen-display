@@ -178,6 +178,11 @@ export default {
         })
       }, this.globalTimes)
     }
+  },
+  watch: {
+    globalSize (val) {
+      this.resize()
+    }
   }
 }
 </script>

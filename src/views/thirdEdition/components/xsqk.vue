@@ -168,6 +168,11 @@ export default {
       }
       this.myChart.setOption(option)
     }
+  },
+  watch: {
+    globalSize (val) {
+      this.resize()
+    }
   }
 }
 </script>

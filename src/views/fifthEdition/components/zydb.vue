@@ -37,7 +37,7 @@ export default {
     }
   },
   created () {
-    this.loadDom()
+    // this.loadDom()
   },
   methods: {
     loadDom () {

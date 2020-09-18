@@ -128,6 +128,9 @@ export default {
       var radomNumber = Math.ceil(Math.random() * 10) % 3
       this.option.series[0].data = this.data[radomNumber]
       this.myChart.setOption(this.option)
+    },
+    globalSize (val) {
+      this.resize()
     }
   }
 }

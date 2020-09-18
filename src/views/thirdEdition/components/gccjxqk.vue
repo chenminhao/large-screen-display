@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     resize () {
+      console.log('abc')
       this.myChart && this.myChart.resize()
     },
     loadDom () {
@@ -170,6 +171,11 @@ export default {
           dataIndex: currentIndex
         })
       }, 3000)
+    }
+  },
+  watch: {
+    globalSize (val) {
+      this.resize()
     }
   }
 }

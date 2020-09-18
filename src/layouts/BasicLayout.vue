@@ -156,8 +156,7 @@ export default {
   width: 100%;
 }
 .global-content{
-  width: 1920px;
-  // height: 100%;
+  width: 100%;
   background: #080e27;
   color: #fff;
 }

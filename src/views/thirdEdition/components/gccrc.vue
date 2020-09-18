@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" style="width:100%;height:237px;"></div>
+  <div :id="id"></div>
 </template>
 
 <script>
@@ -16,10 +16,12 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / 2 + 'px'
     this.loadDom()
   },
   methods: {
     resize () {
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / 2 + 'px'
       this.myChart && this.myChart.resize()
     },
     loadDom () {
@@ -190,6 +192,11 @@ export default {
           dataIndex: currentIndex
         })
       }, this.globalTimes)
+    }
+  },
+  watch: {
+    globalSize (val) {
+      this.resize()
     }
   }
 }

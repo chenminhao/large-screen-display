@@ -194,6 +194,9 @@ export default {
       this.option.series[0].data = this.data[radomNumber].d
       this.option.series[1].data = this.data[radomNumber].x
       this.myChart.setOption(this.option)
+    },
+    globalSize (val) {
+      this.resize()
     }
   }
 }

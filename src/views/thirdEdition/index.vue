@@ -7,26 +7,16 @@
             <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
               <div class="in-rect">
                 <p>
-                  <ICountUp
-                    :start-val="0"
-                    :end-val="data.left[item]"
-                    :options="options"
-                    :decimals="0"
-                    :duration="3000"/>万
+                  <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
                 </p>
-                <p>{{ item }}</p>
+                <p class="textEllipsis">{{ item }}</p>
               </div>
             </div>
             <div v-else class="visual-info">
               <p>
-                <ICountUp
-                  :start-val="0"
-                  :end-val="data.left[item]"
-                  :options="options"
-                  :decimals="0"
-                  :duration="3000"/>万
+                <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
               </p>
-              <p>{{ item }}</p>
+              <p class="textEllipsis">{{ item }}</p>
             </div>
           </a-col>
         </a-row>
@@ -54,21 +44,11 @@
                 </p>
                 <p>国家精品开放课程门数</p>
                 <p class="blue">
-                  <ICountUp
-                    :start-val="0"
-                    :end-val="1.3"
-                    :options="options"
-                    :decimals="0"
-                    :duration="3000"/>万
+                  <ICountUp :start-val="0" :end-val="1.3" :options="options" :decimals="0" :duration="3000" />万
                 </p>
                 <p>全国公共课总门数</p>
                 <p class="blue">
-                  <ICountUp
-                    :start-val="0"
-                    :end-val="28.6"
-                    :options="options"
-                    :decimals="0"
-                    :duration="3000"/>万
+                  <ICountUp :start-val="0" :end-val="28.6" :options="options" :decimals="0" :duration="3000" />万
                 </p>
               </div>
             </a-col>
@@ -81,26 +61,18 @@
           <li v-for="(item,index) in navList" @click="newIndex=index" :class="newIndex===index?'active pull-left':'pull-left'" :key="index">{{ item }}</li>
         </ul>
         <div class="visual-map porR">
-          <maps @openData="openData"/>
+          <maps @openData="openData" />
           <div class="visual-map-title">全国高校分布</div>
           <div class="visual-map-info">
             <div class="visual-map-block">
               <p>
-                <ICountUp
-                  :start-val="0"
-                  :end-val="1265"
-                  :decimals="0"
-                  :duration="3000"/>
+                <ICountUp :start-val="0" :end-val="1265" :decimals="0" :duration="3000" />
               </p>
               <p>全国本科高校数量</p>
             </div>
             <div class="visual-map-block">
               <p>
-                <ICountUp
-                  :start-val="0"
-                  :end-val="1261"
-                  :decimals="0"
-                  :duration="3000"/>
+                <ICountUp :start-val="0" :end-val="1261" :decimals="0" :duration="3000" />
               </p>
               <p>全国本科采集数量</p>
             </div>
@@ -108,10 +80,10 @@
         </div>
         <a-row>
           <a-col :span="12">
-            <gxxz :id="'gxxz'" :province="province"/>
+            <gxxz :id="'gxxz'" :province="province" />
           </a-col>
           <a-col :span="12">
-            <gxlx :id="'gxlx'" :province="province"/>
+            <gxlx :id="'gxlx'" :province="province" />
           </a-col>
         </a-row>
       </a-col>
@@ -121,26 +93,16 @@
             <div v-if="item==='全国全日制在校生'" class="bg-right out-rect">
               <div class="in-rect">
                 <p>
-                  <ICountUp
-                    :start-val="0"
-                    :end-val="data.right[item]"
-                    :options="options"
-                    :decimals="0"
-                    :duration="3000"/>万
+                  <ICountUp :start-val="0" :end-val="data.right[item]" :options="options" :decimals="0" :duration="3000" />万
                 </p>
-                <p>{{ item }}</p>
+                <p class="textEllipsis">{{ item }}</p>
               </div>
             </div>
             <div v-else class="visual-info">
               <p>
-                <ICountUp
-                  :start-val="0"
-                  :end-val="data.right[item]"
-                  :options="options"
-                  :decimals="0"
-                  :duration="3000"/>万
+                <ICountUp :start-val="0" :end-val="data.right[item]" :options="options" :decimals="0" :duration="3000" />万
               </p>
-              <p>{{ item }}</p>
+              <p class="textEllipsis">{{ item }}</p>
             </div>
           </a-col>
         </a-row>
@@ -158,45 +120,26 @@
             <div class="visual-zybj-info">
               <p>全国本科专业数</p>
               <p class="blue">
-                <ICountUp
-                  :start-val="0"
-                  :end-val="764"
-                  :decimals="0"
-                  :duration="3000"/>
+                <ICountUp :start-val="0" :end-val="764" :decimals="0" :duration="3000" />
               </p>
             </div>
 
             <div class="visual-zybj-info">
               <p>全国专业覆盖学科数</p>
               <p class="blue">
-                <ICountUp
-                  :start-val="0"
-                  :end-val="8.7"
-                  :options="options"
-                  :decimals="0"
-                  :duration="3000"/>万
+                <ICountUp :start-val="0" :end-val="8.7" :options="options" :decimals="0" :duration="3000" />万
               </p>
             </div>
             <div class="visual-zybj-info">
               <p>全国专业布点数</p>
               <p class="blue">
-                <ICountUp
-                  :start-val="0"
-                  :end-val="5.5"
-                  :options="options"
-                  :decimals="0"
-                  :duration="3000"/>万
+                <ICountUp :start-val="0" :end-val="5.5" :options="options" :decimals="0" :duration="3000" />万
               </p>
             </div>
             <div class="visual-zybj-info">
               <p>硕士博士学位点数</p>
               <p class="blue">
-                <ICountUp
-                  :start-val="0"
-                  :end-val="6.7"
-                  :options="options"
-                  :decimals="0"
-                  :duration="3000"/>万
+                <ICountUp :start-val="0" :end-val="6.7" :options="options" :decimals="0" :duration="3000" />万
               </p>
             </div>
           </div>
@@ -491,6 +434,28 @@ p {
   background: linear-gradient(135deg, transparent 10px, rgba(67, 154, 255, 0.39) 0) top right;
   .in-rect {
     background: linear-gradient(135deg, transparent 8px, #080e27 0) top right;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .visual {
+    .visual-central {
+      .visual-title {
+        height: 60px;
+        line-height: 60px;
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1400px) and (max-width: 1600px) {
+  .visual {
+    .visual-central {
+      .visual-title {
+        height: 60px;
+        line-height: 60px;
+        font-size: 20px !important;
+      }
+    }
   }
 }
 </style>

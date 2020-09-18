@@ -413,3 +413,8 @@ body{
 	float: left;
     width: 100%;
 }
+.textEllipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

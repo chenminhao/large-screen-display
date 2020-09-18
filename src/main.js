@@ -23,6 +23,10 @@ Vue.config.productionTip = false
 Vue.use(VueAxios)
 
 Vue.use(VueAwesomeSwiper /* { default global options } */)
+window.onresize = () => {
+  console.log((new Date()).getTime())
+  Vue.prototype.globalSize = (new Date()).getTime()
+}
 new Vue({
   router,
   store,

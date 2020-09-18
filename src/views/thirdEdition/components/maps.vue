@@ -131,6 +131,11 @@ export default {
         return ((x < y) ? -1 : ((x > y) ? 1 : 0))
       })
     }
+  },
+  watch: {
+    globalSize (val) {
+      this.resize()
+    }
   }
 }
 </script>
