@@ -16,4 +16,4 @@ export const setDocumentTitle = function (title) {
   }
 }
 
-export const domTitle = '一流专业网络评价推荐系统'
+export const domTitle = '高等教育评估中心大数据可视化系统'

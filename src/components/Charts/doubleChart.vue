@@ -14,13 +14,9 @@ export default {
   },
   data () {
     return {
-      xxdm: '',
-      from: null,
-      to: null,
       loading: false,
-      legendData: [],
-      seriesData: [],
-      option: null
+      option: null,
+      myChart: null
     }
   },
   mounted () {
@@ -32,7 +28,8 @@ export default {
     },
     loadDom () {
       // 基于准备好的dom，初始化echarts实例
-      var myChart = this.$echarts.init(document.getElementById(this.id))
+      this.myChart = this.$echarts.init(document.getElementById(this.id))
+      var currentIndex = -1
       this.option = {
         title: {
           text: '辅导员与心理咨询师数量历年趋势分析',
@@ -44,10 +41,11 @@ export default {
           top: 10,
           left: 10
         },
+        color: ['#29a8ff', '#E93CA7'],
         tooltip: {
           trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          axisPointer: {
+            type: 'shadow'
           }
         },
         legend: {
@@ -98,31 +96,42 @@ export default {
         ],
         yAxis: [
           {
+            type: 'value',
+            position: 'left',
+            axisTick: {
+              show: false
+            },
             axisLabel: {
-              margin: 20,
+              show: true,
               textStyle: {
                 color: '#fff'
               }
             },
-            axisLine: { // 坐标轴轴线相关设置。数学上的x轴
-              show: true,
+            axisLine: {
               lineStyle: {
                 color: '#29A8FF'
               }
             },
+            splitLine: false
+          },
+          {
+            type: 'value',
+            position: 'right',
             axisTick: {
-              show: false,
-              alignWithLabel: false
+              show: false
             },
-            splitLine: {
-              show: false,
-              lineStyle: {
-                type: 'dashed', // 虚线
-                color: '#233e64'
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#fff'
               }
             },
-            type: 'value',
-            max: 30
+            axisLine: {
+              lineStyle: {
+                color: '#29A8FF'
+              }
+            },
+            splitLine: false
           }
         ],
         series: [
@@ -133,14 +142,16 @@ export default {
             data: [100, 100, 100],
             itemStyle: {
               normal: {
-                color: new this.$echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                    { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
-                  ]
-                )
+                color: (params) => {
+                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#28a4fa' }, // 柱图渐变色
+                      { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
+                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                    ]
+                  )
+                }
               }
             }
           },
@@ -151,21 +162,46 @@ export default {
             data: [20, 20, 200],
             itemStyle: {
               normal: {
-                color: new this.$echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#e73ca6' }, // 柱图渐变色
-                    { offset: 0.5, color: '#82296f' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
-                  ]
-                )
+                color: (params) => {
+                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#e73ca6' }, // 柱图渐变色
+                      { offset: 0.5, color: '#82296f' }, // 柱图渐变色
+                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                    ]
+                  )
+                }
               }
             }
           }
         ]
       }
-      myChart.clear()
-      myChart.setOption(this.option)
+      this.myChart.clear()
+      this.myChart.setOption(this.option)
+      setInterval(() => {
+        var dataLen = this.option.series[0].data.length
+        // 取消之前高亮的图形
+        this.myChart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        currentIndex = (currentIndex + 1) % dataLen
+        this.myChart.setOption(this.option)
+        // 高亮当前图形
+        this.myChart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        // 显示 tooltip
+        this.myChart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+      }, this.globalTimes)
     }
   }
 }

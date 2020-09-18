@@ -6,7 +6,7 @@ function resolve (dir) {
 }
 
 // const publicPath = '/web/review'
-const publicPath = process.env.PUBLIC_PATH
+const publicPath = '/dp'
 
 // vue.config.js
 module.exports = {

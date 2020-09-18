@@ -256,7 +256,7 @@ export default {
         })
         currentIndex = (currentIndex + 1) % dataLen
         this.myChart.setOption(this.option)
-      }, 2000)
+      }, this.globalTimes)
     }
   }
 }

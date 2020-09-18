@@ -1,6 +1,6 @@
 <template>
   <div class="nav-menu">
-    <span class="nav-menu-title">一流专业网络评价推荐系统</span>
+    <span class="nav-menu-title">高等教育评估中心大数据可视化系统</span>
   </div>
 </template>
 
