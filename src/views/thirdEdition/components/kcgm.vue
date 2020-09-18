@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:275px;"></div>
+      <div :id="id" style="width:100%;"></div>
       <ul class="kcgm-ul clearfix">
         <li @click="newIndex=0" :class="newIndex===0?'active':''">公共必修课</li>
         <li @click="newIndex=1" :class="newIndex===1?'active':''">专业课</li>
@@ -17,6 +17,10 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -27,7 +31,14 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (337 / 275) + 'px'
     this.loadDom()
+  },
+  watch: {
+    globalSize (val) {
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (337 / 275) + 'px'
+      this.resize()
+    }
   },
   methods: {
     resize () {
@@ -134,11 +145,6 @@ export default {
           dataIndex: currentIndex
         })
       }, this.globalTimes)
-    }
-  },
-  watch: {
-    globalSize (val) {
-      this.resize()
     }
   }
 }

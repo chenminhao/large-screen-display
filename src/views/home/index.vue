@@ -3,16 +3,16 @@
   <swiper class="fullScreen" :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide>
-      <third-edition />
+      <third-edition :globalSize="globalSize" />
     </swiper-slide>
     <swiper-slide>
-      <fourth-edition />
+      <fourth-edition :globalSize="globalSize" />
     </swiper-slide>
     <swiper-slide>
-      <fifthEdition />
+      <fifth-edition :globalSize="globalSize" />
     </swiper-slide>
     <swiper-slide>
-      <sixthEdition />
+      <sixth-edition :globalSize="globalSize" />
     </swiper-slide>
   </swiper>
 </template>
@@ -25,7 +25,13 @@ export default {
   data () {
     return {
       swiperOption: {
-      }
+      },
+      globalSize: ''
+    }
+  },
+  created () {
+    window.onresize = () => {
+      this.globalSize = String((new Date()).getTime())
     }
   },
   computed: {
@@ -38,6 +44,5 @@ export default {
 <style lang="less" scoped>
 .fullScreen {
   width: 100%;
-  // height: 1080px;
 }
 </style>

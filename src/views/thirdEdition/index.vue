@@ -22,8 +22,8 @@
         </a-row>
         <div class="visual-bg marginT12">
           <p class="visual-left-title">全国高层次人才</p>
-          <gccrc :id="'gccrc'" />
-          <gccjxqk :id="'gccjxqk'" />
+          <gccrc :id="'gccrc'" :globalSize="globalSize" />
+          <gccjxqk :id="'gccjxqk'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <a-row>
@@ -155,6 +155,12 @@ import { PageView } from '@/layouts'
 import { gccrc, gccjxqk, kcgm, ssb, zybj, xsqk, gxxz, gxlx, maps } from './components'
 import ICountUp from 'vue-countup-v2'
 export default {
+  props: {
+    globalSize: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       province: '',
@@ -453,7 +459,7 @@ p {
       .visual-title {
         height: 60px;
         line-height: 60px;
-        font-size: 20px !important;
+        font-size: 18px !important;
       }
     }
   }

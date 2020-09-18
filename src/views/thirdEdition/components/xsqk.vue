@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:230px;margin: 0 auto;"></div>
+      <div :id="id"></div>
     </a-spin>
   </div>
 </template>
@@ -12,6 +12,10 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -24,6 +28,7 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (475 / 230) + 'px'
     this.loadDom()
   },
   methods: {
@@ -167,11 +172,6 @@ export default {
         ]
       }
       this.myChart.setOption(option)
-    }
-  },
-  watch: {
-    globalSize (val) {
-      this.resize()
     }
   }
 }

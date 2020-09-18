@@ -1,5 +1,5 @@
 <template>
-  <div :id="id"></div>
+  <div :id="id" style="width:100%;"></div>
 </template>
 
 <script>
@@ -8,6 +8,10 @@ export default {
     id: {
       type: String,
       default: (new Date()).getTime()
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -19,9 +23,14 @@ export default {
     document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / 2 + 'px'
     this.loadDom()
   },
+  watch: {
+    globalSize (val) {
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / 2 + 'px'
+      this.resize()
+    }
+  },
   methods: {
     resize () {
-      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / 2 + 'px'
       this.myChart && this.myChart.resize()
     },
     loadDom () {
@@ -192,17 +201,6 @@ export default {
           dataIndex: currentIndex
         })
       }, this.globalTimes)
-    }
-  },
-  watch: {
-    globalSize: {
-      handler (newName, oldName) {
-        console.log('测试')
-        this.resize()
-      },
-      // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
-      immediate: true,
-      deep: true
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:240px;"></div>
+      <div :id="id" style="width:100%;"></div>
     </a-spin>
   </div>
 </template>
@@ -12,6 +12,10 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -21,11 +25,17 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (475 / 240) + 'px'
     this.loadDom()
+  },
+  watch: {
+    globalSize (val) {
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (475 / 240) + 'px'
+      this.resize()
+    }
   },
   methods: {
     resize () {
-      console.log('abc')
       this.myChart && this.myChart.resize()
     },
     loadDom () {
@@ -171,11 +181,6 @@ export default {
           dataIndex: currentIndex
         })
       }, 3000)
-    }
-  },
-  watch: {
-    globalSize (val) {
-      this.resize()
     }
   }
 }

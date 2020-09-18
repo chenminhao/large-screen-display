@@ -1,5 +1,5 @@
 <template>
-  <div id="map" class="marB20" style="width:100%;height:660px;"></div>
+  <div id="map" class="marB20" style="width:100%;"></div>
 </template>
 
 <script>
@@ -10,6 +10,10 @@ export default {
     openData: {
       type: Function,
       default: () => {}
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -24,9 +28,19 @@ export default {
     this.mapData = this.sortByKey(mapData, 'value')
   },
   mounted () {
+    document.getElementById('map').style.height = document.getElementById('map').clientWidth / (796 / 660) + 'px'
     this.loadDom()
   },
+  watch: {
+    globalSize (val) {
+      document.getElementById('map').style.height = document.getElementById('map').clientWidth / (796 / 660) + 'px'
+      this.resize()
+    }
+  },
   methods: {
+    resize () {
+      this.myChart && this.myChart.resize()
+    },
     // 更新数据
     loadDom () {
       // 基于准备好的dom，初始化echarts实例
@@ -130,11 +144,6 @@ export default {
         var y = a[key]
         return ((x < y) ? -1 : ((x > y) ? 1 : 0))
       })
-    }
-  },
-  watch: {
-    globalSize (val) {
-      this.resize()
     }
   }
 }

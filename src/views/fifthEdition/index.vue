@@ -78,6 +78,12 @@ export default {
   data () {
     return {}
   },
+  props: {
+    globalSize: {
+      type: String,
+      default: ''
+    }
+  },
   components: {
     PageView,
     xkfx,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:280px;margin: 0 auto;"></div>
+      <div :id="id" style="width:100%;"></div>
     </a-spin>
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
       default: null
     },
     province: {
+      type: String,
+      default: ''
+    },
+    globalSize: {
       type: String,
       default: ''
     }
@@ -54,7 +58,20 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (398 / 280) + 'px'
     this.loadDom()
+  },
+  watch: {
+    province (val) {
+      this.option.title.text = `${val}高校类型占比`
+      var radomNumber = Math.ceil(Math.random() * 10) % 3
+      this.option.series[0].data = this.data[radomNumber]
+      this.myChart.setOption(this.option)
+    },
+    globalSize (val) {
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (398 / 280) + 'px'
+      this.resize()
+    }
   },
   methods: {
     resize () {
@@ -120,17 +137,6 @@ export default {
         ]
       }
       this.myChart.setOption(this.option)
-    }
-  },
-  watch: {
-    province (val) {
-      this.option.title.text = `${val}高校类型占比`
-      var radomNumber = Math.ceil(Math.random() * 10) % 3
-      this.option.series[0].data = this.data[radomNumber]
-      this.myChart.setOption(this.option)
-    },
-    globalSize (val) {
-      this.resize()
     }
   }
 }

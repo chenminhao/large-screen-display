@@ -122,6 +122,12 @@ import { doughnutChart, stackedAreaChart, stackedAreaChartV2, doubleChart } from
 import { jsjgfx, xksj, nlzb, xxdjcg, xxlxcg } from './components'
 import ICountUp from 'vue-countup-v2'
 export default {
+  props: {
+    globalSize: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       spinning: false,
