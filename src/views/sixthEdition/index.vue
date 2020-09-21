@@ -8,43 +8,43 @@
         <a-col :span="8">
           <div class="visual-bg">
             <!-- 本科生人数（人） -->
-            <bar :id="'bksrs'" :title="'本科生人数（人）'" />
+            <bar :id="'bksrs'" :title="'本科生人数（人）'" :globalSize="globalSize" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 具有高级职称的专任教师比例（%) -->
-            <bar :id="'zrjsbl'" :title="'具有高级职称的专任教师比例（%)'" />
+            <bar :id="'zrjsbl'" :title="'具有高级职称的专任教师比例（%)'" :globalSize="globalSize" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 生均教学日常运行支出（元） -->
-            <bar :id="'cryxzc'" :title="'生均教学日常运行支出（元）'" />
+            <bar :id="'cryxzc'" :title="'生均教学日常运行支出（元）'" :globalSize="globalSize"/>
           </div>
         </a-col>
         <a-col :span="8">
           <div class="visual-bg">
             <!-- 折合学生数（人） -->
-            <bar :id="'xss'" :title="'折合学生数（人）'" />
+            <bar :id="'xss'" :title="'折合学生数（人）'" :globalSize="globalSize" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 生师比 -->
-            <bar :id="'ssbs'" :title="'生师比'" />
+            <bar :id="'ssbs'" :title="'生师比'" :globalSize="globalSize" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 本科专项教学经费（万元） -->
-            <bar :id="'zxjxjf'" :title="'本科专项教学经费（万元）'" />
+            <bar :id="'zxjxjf'" :title="'本科专项教学经费（万元）'" :globalSize="globalSize"/>
           </div>
         </a-col>
         <a-col :span="8">
           <div class="visual-bg">
             <!-- 本科生占全日制在校生总数的比例（%) -->
-            <bar :id="'zxsbl'" :title="'本科生占全日制在校生总数的比例（%)'" />
+            <bar :id="'zxsbl'" :title="'本科生占全日制在校生总数的比例（%)'" :globalSize="globalSize" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 本科专业总数 -->
-            <bar :id="'bkzyzs'" :title="'本科专业总数'" />
+            <bar :id="'bkzyzs'" :title="'本科专业总数'" :globalSize="globalSize" />
           </div>
           <div class="visual-bg marginT24">
             <!-- 生均本科实验经费（元） -->
-            <bar :id="'sjbksyjf'" :title="'生均本科实验经费（元）'" />
+            <bar :id="'sjbksyjf'" :title="'生均本科实验经费（元）'" :globalSize="globalSize" />
           </div>
         </a-col>
       </a-row>

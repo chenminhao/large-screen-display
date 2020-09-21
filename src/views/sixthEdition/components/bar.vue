@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:305px;"></div>
+      <div :id="id"></div>
     </a-spin>
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
       default: ''
     },
     title: {
+      type: String,
+      default: ''
+    },
+    globalSize: {
       type: String,
       default: ''
     }
@@ -59,11 +63,21 @@ export default {
           xAxis: ['一流大学', '一流学科', '普通本科', '新建本科', '独立院校', '合作协办'],
           data: [13, 17, 16, 18, 19, 21, 23]
         }
-      }
+      },
+      timer: null
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (447 / 305) + 'px'
     this.loadDom()
+  },
+  watch: {
+    globalSize (val) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.resize()
+      }, 500)
+    }
   },
   methods: {
     resize () {
