@@ -25,19 +25,19 @@
         </div>
         <div class="visual-bg marginT24">
           <!-- 教授历年上讲台比例 -->
-          <doughnutChart :id="'jsbl'" :title="'教授历年上讲台比例'" />
+          <doughnutChart :id="'jsbl'" :title="'教授历年上讲台比例'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 历年教授上讲台比例趋势（按高校类型） -->
-          <stackedAreaChart :id="'jsqs'" />
+          <stackedAreaChart :id="'jsqs'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 高层次人才历年上讲台比例 -->
-          <doughnutChart :id="'gccbl'" :title="'高层次人才历年上讲台比例'" :height="'196px'" />
+          <doughnutChart :id="'gccbl'" :title="'高层次人才历年上讲台比例'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 高层次人才总数区域分布以及历年变化情况 -->
-          <stackedAreaChart :id="'gccbh'" />
+          <stackedAreaChart :id="'gccbh'" :globalSize="globalSize" />
         </div>
       </a-col>
       <a-col class="visual-central" :span="10">
@@ -45,19 +45,19 @@
         <div class="porR">
           <p class="visual4-title">教师结构分析</p>
           <!-- 教师结构分析 -->
-          <jsjgfx :id="'jsjgfx'" />
+          <jsjgfx :id="'jsjgfx'" :globalSize="globalSize" />
         </div>
         <a-row :gutter="30">
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 职称结构历年占比趋势 -->
-              <stackedAreaChartV2 :id="'zczb'" />
+              <stackedAreaChartV2 :id="'zczb'" :globalSize="globalSize"/>
             </div>
           </a-col>
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 年龄结构历年占比趋势 -->
-              <nlzb :id="'nlzb'" />
+              <nlzb :id="'nlzb'" :globalSize="globalSize" />
             </div>
           </a-col>
         </a-row>
@@ -65,13 +65,13 @@
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 学位结构历年占比趋势 -->
-              <stackedAreaChartV2 :id="'xwzb'" />
+              <stackedAreaChartV2 :id="'xwzb'" :globalSize="globalSize" />
             </div>
           </a-col>
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 辅导员与心理咨询师数量历年趋势分析 -->
-              <doubleChart :id="'fdyzb'" />
+              <doubleChart :id="'fdyzb'" :globalSize="globalSize" />
             </div>
           </a-col>
         </a-row>
@@ -79,13 +79,13 @@
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 各学校类型教授学位教师占比趋势分析 -->
-              <stackedAreaChartV2 :id="'jszb'" />
+              <stackedAreaChartV2 :id="'jszb'" :globalSize="globalSize" />
             </div>
           </a-col>
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 各学校类型博士学位教师占比趋势分析 -->
-              <stackedAreaChartV2 :id="'bszb'" />
+              <stackedAreaChartV2 :id="'bszb'" :globalSize="globalSize" />
             </div>
           </a-col>
         </a-row>
@@ -103,13 +103,13 @@
             </a-col>
           </a-row>
           <!-- 历年各学科门类专业教师数据 -->
-          <xksj :id="'xksj'" />
+          <xksj :id="'xksj'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 国家级教学成果奖数据分析 (各学校类型历年国家级教学成果奖情况) -->
-          <xxdjcg :id="'xxdjcg'" />
+          <xxdjcg :id="'xxdjcg'" :globalSize="globalSize" />
           <!-- 各学校类型历年国家级教学成果奖情况 -->
-          <xxlxcg :id="'xxlxcg'" />
+          <xxlxcg :id="'xxlxcg'" :globalSize="globalSize" />
         </div>
       </a-col>
     </a-row>

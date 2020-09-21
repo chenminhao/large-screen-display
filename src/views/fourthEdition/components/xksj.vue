@@ -16,6 +16,7 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 262) + 'px'
     this.loadDom()
   },
   methods: {

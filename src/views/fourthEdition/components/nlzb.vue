@@ -1,8 +1,8 @@
 <template>
   <div style="width:100%;">
     <a-spin :spinning="loading">
-      <div class="doughnut-block">
-        <div v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
+      <div id="doughnut-block1">
+        <div :style="{height: doughnutHeight + 'px'}" v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
       </div>
     </a-spin>
   </div>
@@ -23,11 +23,15 @@ export default {
       to: null,
       loading: false,
       legendData: [],
-      seriesData: []
+      seriesData: [],
+      doughnutHeight: ''
     }
   },
   mounted () {
-    this.loadDom()
+    this.doughnutHeight = document.getElementById('doughnut-block1').clientWidth / 3 / (127 / 196)
+    setTimeout(() => {
+      this.loadDom()
+    }, 500)
   },
   methods: {
     resize () {
@@ -111,7 +115,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.doughnut-block {
+#doughnut-block1 {
   display: flex;
   >div{
     flex: 1;

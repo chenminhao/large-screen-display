@@ -1,8 +1,8 @@
 <template>
   <div style="width:100%;">
     <a-spin :spinning="loading">
-      <div class="doughnut-block">
-        <div v-for="item in 4" :key="item" :id="`${id}-${item}`"></div>
+      <div id="doughnut-block">
+        <div :style="{height: doughnutHeight + 'px'}" v-for="item in 4" :key="item" :id="`${id}-${item}`"></div>
       </div>
     </a-spin>
   </div>
@@ -14,16 +14,30 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
       myChart: null,
-      loading: false
+      loading: false,
+      doughnutHeight: ''
     }
   },
   mounted () {
-    this.loadDom()
+    this.doughnutHeight = document.getElementById('doughnut-block').clientWidth / 4 / (199 / 320)
+    setTimeout(() => {
+      this.loadDom()
+    }, 500)
+  },
+  watch: {
+    globalSize (val) {
+      this.doughnutHeight = document.getElementById('doughnut-block').clientWidth / 4 / (199 / 320)
+      this.resize()
+    }
   },
   methods: {
     resize () {
@@ -229,11 +243,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.doughnut-block {
+#doughnut-block {
   display: flex;
   > div {
     flex: 1;
-    height: 320px;
   }
 }
 </style>

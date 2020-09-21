@@ -1,8 +1,8 @@
 <template>
   <div style="width:100%;">
     <a-spin :spinning="loading">
-      <div class="doughnut-block">
-        <div :style="{height:height?height:'198px'}" v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
+      <div id="doughnut-block2">
+        <div :style="{height:doughnutHeight+'px'}" v-for="item in 3" :key="item" :id="`${id}-${item}`"></div>
       </div>
     </a-spin>
   </div>
@@ -18,10 +18,6 @@ export default {
     title: {
       type: String,
       default: ''
-    },
-    height: {
-      type: String,
-      default: ''
     }
   },
   data () {
@@ -31,11 +27,15 @@ export default {
       to: null,
       loading: false,
       legendData: [],
-      seriesData: []
+      seriesData: [],
+      doughnutHeight: ''
     }
   },
   mounted () {
-    this.loadDom()
+    this.doughnutHeight = document.getElementById('doughnut-block2').clientWidth / 3 / (161 / (this.id === 'gccbl' ? 196 : 198))
+    setTimeout(() => {
+      this.loadDom()
+    }, 500)
   },
   methods: {
     resize () {
@@ -112,7 +112,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.doughnut-block {
+#doughnut-block2 {
   display: flex;
   > div {
     flex: 1;

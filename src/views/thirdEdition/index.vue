@@ -123,7 +123,6 @@
                 <ICountUp :start-val="0" :end-val="764" :decimals="0" :duration="3000" />
               </p>
             </div>
-
             <div class="visual-zybj-info">
               <p>全国专业覆盖学科数</p>
               <p class="blue">
