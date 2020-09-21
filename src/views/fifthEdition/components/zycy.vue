@@ -1,6 +1,6 @@
 <template>
   <a-spin :spinning="loading">
-    <div style="width:100%;height:221px;" id="word_cloud_view_id"></div>
+    <div id="word_cloud_view_id"></div>
   </a-spin>
 </template>
 
@@ -89,6 +89,8 @@ export default {
     }
   },
   mounted () {
+    document.getElementById('word_cloud_view_id').style.height = document.getElementById('word_cloud_view_id').clientWidth / (429 / 221) + 'px'
+
     this.draw_word_cloud_view()
     this.init_view_data()
   },

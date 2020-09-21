@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <div :id="id" style="width:100%;height:222px;"></div>
+      <div :id="id"></div>
     </a-spin>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
     }
   },
   mounted () {
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 222) + 'px'
     this.loadDom()
   },
   methods: {

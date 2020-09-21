@@ -8,7 +8,7 @@
       </a-select>
     </div>
     <ul class="majorUl majorUl1">
-      <li class="majorLi" v-for="item in seriesData[major]" :key="item">
+      <li class="majorLi" v-for="(item,index) in seriesData[major]" :key="index">
         <p>{{ item.name }}</p>
         <div>
           <div :style="{width:`${item.value}%`}"></div>
