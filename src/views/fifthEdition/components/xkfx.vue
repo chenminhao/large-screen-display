@@ -10,20 +10,30 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
-      xxdm: '',
-      from: null,
-      to: null,
       loading: false,
-      option: null
+      option: null,
+      timer: null
     }
   },
   mounted () {
     document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 221) + 'px'
     this.loadDom()
+  },
+  watch: {
+    globalSize (val) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.resize()
+      }, 500)
+    }
   },
   methods: {
     resize () {

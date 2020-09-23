@@ -12,11 +12,16 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: null
     }
   },
   data () {
     return {
       myChart: null,
+      timer: null,
       loading: false,
       seriesData: [],
       legendData: ['法学', '工学', '管理学', '教育学', '经济学', '理学', '历史学', '农学', '文学', '医学', '艺术学', '哲学'],
@@ -26,6 +31,14 @@ export default {
   mounted () {
     document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (675 / 713) + 'px'
     this.loadDom()
+  },
+  watch: {
+    globalSize (val) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.resize()
+      }, 500)
+    }
   },
   methods: {
     resize () {

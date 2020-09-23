@@ -9,9 +9,16 @@ var echarts = require('echarts')
 require('echarts-wordcloud')
 
 export default {
+  props: {
+    globalSize: {
+      type: String,
+      default: ''
+    }
+  },
   name: 'WordCloudIndex',
   data () {
     return {
+      timer: null,
       loading: false,
       word_cloud_view: null,
       word_cloud_options: {},
@@ -39,7 +46,23 @@ export default {
       ]
     }
   },
+  mounted () {
+    document.getElementById('word_cloud_view_id').style.height = document.getElementById('word_cloud_view_id').clientWidth / (429 / 221) + 'px'
+    this.draw_word_cloud_view()
+    this.init_view_data()
+  },
+  watch: {
+    globalSize (val) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.resize()
+      }, 500)
+    }
+  },
   methods: {
+    resize () {
+      this.word_cloud_view && this.word_cloud_view.resize()
+    },
     draw_word_cloud_view () {
       if (this.word_cloud_view) {
         this.word_cloud_view.dispose()
@@ -87,12 +110,6 @@ export default {
       }
       this.word_cloud_view.setOption(this.word_cloud_options)
     }
-  },
-  mounted () {
-    document.getElementById('word_cloud_view_id').style.height = document.getElementById('word_cloud_view_id').clientWidth / (429 / 221) + 'px'
-
-    this.draw_word_cloud_view()
-    this.init_view_data()
   },
   render (h) {
     return h('div', {

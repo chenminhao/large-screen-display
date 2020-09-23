@@ -4,15 +4,15 @@
       <a-col class="visual-left" :span="7">
         <div class="visual-bg">
           <!-- 历年学科结构分析 -->
-          <xkfx :id="'xkfx'" />
+          <xkfx :id="'xkfx'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 2017-2019专业布点数增长最多的专业排名前十 -->
-          <zyzz :id="'zyzz'" />
+          <zyzz :id="'zyzz'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 2017-2019专业布点数减少最多的专业排名前十 -->
-          <zyjs :id="'zyjs'" />
+          <zyjs :id="'zyjs'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
           <!-- 新增专业动态 -->
@@ -38,11 +38,11 @@
           <a-row>
             <a-col :span="12">
               <!-- 各省份学科专业布点数 -->
-              <zyfb :id="'zyfb'" />
+              <zyfb :id="'zyfb'" :globalSize="globalSize" />
             </a-col>
             <a-col :span="12">
               <!-- 各省份学科专业布点数对比 -->
-              <zydb :id="'zydb'" />
+              <zydb :id="'zydb'" :globalSize="globalSize" />
             </a-col>
           </a-row>
         </div>
@@ -50,19 +50,19 @@
           <a-col :span="8">
             <div class="visual-bg marginT24">
               <!-- 新增专业词云 -->
-              <zycy :id="'zycy'" />
+              <zycy :id="'zycy'" :globalSize="globalSize" />
             </div>
           </a-col>
           <a-col :span="8">
             <div class="visual-bg marginT24">
               <!-- 就业率最高的10个专业 -->
-              <jylpm :id="'jylpm'" />
+              <jylpm :id="'jylpm'" :globalSize="globalSize" />
             </div>
           </a-col>
           <a-col :span="8">
             <div class="visual-bg marginT24">
               <!-- 各授予学位门类就业率分析 -->
-              <jylfx :id="'jylfx'" />
+              <jylfx :id="'jylfx'" :globalSize="globalSize" />
             </div>
           </a-col>
         </a-row>

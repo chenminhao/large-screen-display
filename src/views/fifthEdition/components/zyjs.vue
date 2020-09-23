@@ -12,17 +12,30 @@ export default {
     id: {
       type: String,
       default: null
+    },
+    globalSize: {
+      type: String,
+      default: null
     }
   },
   data () {
     return {
       myChart: null,
-      loading: false
+      loading: false,
+      timer: null
     }
   },
   mounted () {
     document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 222) + 'px'
     this.loadDom()
+  },
+  watch: {
+    globalSize (val) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.resize()
+      }, 500)
+    }
   },
   methods: {
     resize () {
@@ -50,7 +63,8 @@ export default {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-          }
+          },
+          confine: true// 将此限制打开后tooltip将不再溢出
         },
         grid: {
           top: '20%',

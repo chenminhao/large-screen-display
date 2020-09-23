@@ -18,6 +18,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    globalSize: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -36,6 +40,12 @@ export default {
     setTimeout(() => {
       this.loadDom()
     }, 500)
+  },
+  watch: {
+    globalSize (val) {
+      this.doughnutHeight = document.getElementById('doughnut-block2').clientWidth / 3 / (161 / (this.id === 'gccbl' ? 196 : 198))
+      this.resize()
+    }
   },
   methods: {
     resize () {
