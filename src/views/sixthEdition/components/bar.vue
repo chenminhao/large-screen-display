@@ -68,7 +68,7 @@ export default {
     }
   },
   mounted () {
-    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (447 / 305) + 'px'
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (588 / 305) + 'px'
     this.loadDom()
   },
   watch: {
