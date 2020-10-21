@@ -39,7 +39,7 @@ export default {
       this.myChart && this.myChart.resize()
     },
     loadDom () {
-      var xAxis = ['教育部创新团', '黄大年式教学团队', 'NSFC创新研究群体', '科技部重点领域创新团队', '国家级教学团队', '省级高层次研究团队', '省部级教学团队']
+      var xAxis = ['教育部创新团队', '黄大年式教学团队', 'NSFC创新研究群体', '科技部重点领域创新团队', '国家级教学团队', '省级高层次研究团队', '省部级教学团队']
       var data = [683, 137, 364, 98, 796, 5211, 5234]
       // 基于准备好的dom，初始化echarts实例
       this.myChart = this.$echarts.init(document.getElementById(this.id))
@@ -47,13 +47,14 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '全国高层次教学团队情况',
+          text: '全国高层次教学团队',
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
-          left: 'center'
+          top: 0,
+          left: 10
         },
         tooltip: {
           trigger: 'axis',
@@ -127,7 +128,7 @@ export default {
         ],
         series: [
           {
-            name: '全国高层次教学团队情况',
+            name: '全国高层次教学团队',
             type: 'bar',
             barWidth: 20,
             data: data,
@@ -137,9 +138,8 @@ export default {
                   return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 0, color: '#28a4fa' },
-                      { offset: 0.5, color: '#1c68a5' },
-                      { offset: 1, color: '#0c1936' }
+                      { offset: 0, color: '#68E0CF' },
+                      { offset: 1, color: '#209CFF' }
                     ]
                   )
                 },

@@ -53,7 +53,6 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '各类型生师比 ',
           left: 'center',
           textStyle: {
             color: '#fff',
@@ -141,9 +140,8 @@ export default {
                   return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                      { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                      { offset: 0, color: '#68E0CF' },
+                      { offset: 1, color: '#209CFF' }
                     ]
                   )
                 },

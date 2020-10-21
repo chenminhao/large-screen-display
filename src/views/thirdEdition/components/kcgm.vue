@@ -51,7 +51,7 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '课程规模环比图',
+          text: '课程规模',
           top: 12,
           left: 12,
           textStyle: {

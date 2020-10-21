@@ -4,7 +4,7 @@
       <a-col class="visual-left" :span="7">
         <a-row :gutter="16">
           <a-col :span="8" v-for="(item,index) in Object.keys(data.left)" :key="index">
-            <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
+            <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect" style="margin-bottom:11px;">
               <div class="in-rect">
                 <p>
                   <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
@@ -21,7 +21,7 @@
           </a-col>
         </a-row>
         <div class="visual-bg marginT12">
-          <p class="visual-left-title">全国高层次人才</p>
+          <p class="visual-left-title"></p>
           <gccrc :id="'gccrc'" :globalSize="globalSize" />
           <gccjxqk :id="'gccjxqk'" :globalSize="globalSize" />
         </div>
@@ -32,24 +32,30 @@
             </a-col>
             <a-col :span="7">
               <div class="visual-kcgm-info">
-                <p>校均课程总门数</p>
-                <p class="pink">
-                  <ICountUp
-                    :start-val="0"
-                    :end-val="191.3"
-                    :options="options"
-                    :decimals="0"
-                    :duration="3000"
-                    ref="example1" />万
-                </p>
-                <p>国家精品开放课程门数</p>
-                <p class="blue">
-                  <ICountUp :start-val="0" :end-val="1.3" :options="options" :decimals="0" :duration="3000" />万
-                </p>
-                <p>全国公共课总门数</p>
-                <p class="blue">
-                  <ICountUp :start-val="0" :end-val="28.6" :options="options" :decimals="0" :duration="3000" />万
-                </p>
+                <div class="visual-kcgm-block">
+                  <p class="pink">
+                    <ICountUp
+                      :start-val="0"
+                      :end-val="191.3"
+                      :options="options"
+                      :decimals="0"
+                      :duration="3000"
+                      ref="example1" />万
+                  </p>
+                  <p>全国课程总门数</p>
+                </div>
+                <div class="visual-kcgm-block">
+                  <p class="blue">
+                    <ICountUp :start-val="0" :end-val="1.3" :options="options" :decimals="0" :duration="3000" />万
+                  </p>
+                  <p>国家精品在线开放课程</p>
+                </div>
+                <div class="visual-kcgm-block">
+                  <p class="blue">
+                    <ICountUp :start-val="0" :end-val="28.6" :options="options" :decimals="0" :duration="3000" />万
+                  </p>
+                  <p>全国公共课总门数</p>
+                </div>
               </div>
             </a-col>
           </a-row>
@@ -108,7 +114,7 @@
         </a-row>
         <div class="visual-bg marginT12">
           <div class="porR">
-            <p class="visual-left-title">全国历年生师比分析</p>
+            <p class="visual-left-title">全国各类型高校历年生师比</p>
           </div>
           <ssb :id="'ssb'" />
         </div>
@@ -118,28 +124,28 @@
         <div class="visual-bg marginT24">
           <div class="visual-zybj">
             <div class="visual-zybj-info">
-              <p>全国本科专业数</p>
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="764" :decimals="0" :duration="3000" />
               </p>
+              <p>全国本科专业数</p>
             </div>
             <div class="visual-zybj-info">
-              <p>全国专业覆盖学科数</p>
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="8.7" :options="options" :decimals="0" :duration="3000" />万
               </p>
+              <p>全国专业布局</p>
             </div>
             <div class="visual-zybj-info">
-              <p>全国专业布点数</p>
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="5.5" :options="options" :decimals="0" :duration="3000" />万
               </p>
+              <p>全国专业布点数</p>
             </div>
             <div class="visual-zybj-info">
-              <p>硕士博士学位点数</p>
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="6.7" :options="options" :decimals="0" :duration="3000" />万
               </p>
+              <p>硕士博士学位点数</p>
             </div>
           </div>
           <zybj :id="'zybj'" />
@@ -172,12 +178,12 @@ export default {
           '全国专任教师总数': 111.8,
           '全国外聘教师总数': 27.4,
           '全国高层次人才总数': 7.6,
-          '全国实验技术人员数': 7.6,
-          '全国教育管理人才总数': 5.8
+          '全国实验技术人员总数': 7.6,
+          '全国教育管理人才员总数': 5.8
         },
         right: {
-          '全国全日制在校生': 2165.7,
-          '本科生数': 1748.7,
+          '全国全日制在校生总数': 2165.7,
+          '本科生总数': 1748.7,
           '博士研究生总数': 40.5,
           '硕士研究生总数': 184.7,
           '留学生总数': 24.5,
@@ -269,42 +275,34 @@ p {
       font-weight: 400;
     }
     .visual-kcgm-info {
-      margin-top: 6px;
+      margin: 46% 6% 0 0;
       overflow: hidden;
       p:nth-of-type(2n + 1) {
-        margin-top: 26px;
-        font-size: 11px;
-        font-weight: 400;
-      }
-      p:nth-of-type(2n) {
         font-size: 18px;
         font-weight: 800;
+      }
+      p:nth-of-type(2n) {
+        font-size: 11px;
+        font-weight: 400;
       }
     }
     .visual-zybj {
       display: flex;
       justify-content: space-around;
       .visual-zybj-info {
-        padding-top: 10px;
+        margin-top: 12px;
+        padding: 4px 6px;
+        border: 1px solid #1c3c6e;
+        border-radius: 4px;
+        text-align: center;
         p:nth-of-type(2n + 1) {
           position: relative;
-          padding-left: 10px;
-          font-size: 10px;
-          font-weight: 400;
-        }
-        p:nth-of-type(2n + 1)::before {
-          content: '';
-          position: absolute;
-          top: 2px;
-          left: 0;
-          width: 2px;
-          height: 16px;
-          background: rgba(235, 69, 161, 1);
-          border-radius: 1px;
-        }
-        p:nth-of-type(2n) {
           font-size: 18px;
           font-weight: 800;
+        }
+        p:nth-of-type(2n) {
+          font-size: 10px;
+          font-weight: 400;
         }
       }
     }
@@ -462,5 +460,11 @@ p {
       }
     }
   }
+}
+.visual-kcgm-block {
+  border: 1px solid #1c3c6e;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 12px;
 }
 </style>

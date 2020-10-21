@@ -41,7 +41,7 @@ export default {
       this.myChart.clear()
       const option = {
         title: {
-          text: '全国历年新生报到率与就业率趋势分析',
+          text: '全国新生报到率与就业率趋势',
           top: 12,
           left: 12,
           textStyle: {

@@ -49,7 +49,7 @@ export default {
       this.myChart.clear()
       const option = {
         title: {
-          text: '专业布局 ',
+          text: '全国专业布局 ',
           top: 12,
           left: 12,
           textStyle: {
@@ -149,9 +149,8 @@ export default {
                   return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                      { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                      { offset: 0, color: '#68E0CF' },
+                      { offset: 1, color: '#209CFF' }
                     ]
                   )
                 }

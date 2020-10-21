@@ -9,7 +9,7 @@ export default {
   props: {
     openData: {
       type: Function,
-      default: () => {}
+      default: () => { }
     },
     globalSize: {
       type: String,
@@ -53,16 +53,14 @@ export default {
         tooltip: {
           triggerOn: 'mousemove',
           formatter: function (params) {
-            var a = '<span>' + params.name + '</span>'
-            var b = '<span style="color:' + 'rgba(23, 240, 204)' + '">' + params.value ? params.value : 0 + '%</span>'
-            return [a, b].join(' :  ')
+            return `<span>${params.name}</span> , <span>${params.value ? params.value : 0}所</span>`
           },
-          backgroundColor: 'rgba(29, 38, 71)',
           // 额外附加的阴影
+          backgroundColor: 'rgba(29, 38, 71)',
           extraCssText: 'box-shadow:0 0 4px rgba(11, 19, 43,0.8);'
-
         },
         visualMap: {
+          show: false,
           type: 'continuous',
           orient: 'horizontal',
           max: 70,
@@ -93,7 +91,9 @@ export default {
               borderWidth: 1.5
             },
             emphasis: {
-              areaColor: 'rgba(23, 240, 204)',
+              areaColor: '#d5b044',
+              shadowColor: 'rgba(213, 176, 68, .2)',
+              shadowBlur: 12,
               shadowOffsetX: 0,
               shadowOffsetY: 0,
               borderWidth: 0
