@@ -44,7 +44,7 @@ export default {
       var myChart = this.$echarts.init(document.getElementById(this.id))
       this.option = {
         title: {
-          text: '各学校类型历年国家级教学成果奖情况',
+          text: '全国学科结构',
           textStyle: {
             color: '#fff',
             fontSize: 12,
@@ -97,6 +97,7 @@ export default {
               show: false
             },
             axisLabel: { // 坐标轴刻度标签的相关设置
+              interval: 0,
               color: '#fff'
             }
           }
@@ -133,9 +134,9 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(
                   0, 0, 0, 1,
                   [
-                    { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                    { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
+                    { offset: 0, color: '#FFB696' }, // 柱图渐变色
+                    { offset: 0.5, color: '#fe9a96' }, // 柱图渐变色
+                    { offset: 1, color: '#FF7A95' } // 柱图渐变色
                   ]
                 )
               }
@@ -151,9 +152,9 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(
                   0, 0, 0, 1,
                   [
-                    { offset: 0, color: '#3065f3' }, // 柱图渐变色
-                    { offset: 0.5, color: '#2146a9' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1737' } // 柱图渐变色
+                    { offset: 0, color: '#AE2CF1' }, // 柱图渐变色
+                    { offset: 0.5, color: '#9152f8' }, // 柱图渐变色
+                    { offset: 1, color: '#7776FF' } // 柱图渐变色
                   ]
                 )
               }
@@ -169,9 +170,9 @@ export default {
                 color: new this.$echarts.graphic.LinearGradient(
                   0, 0, 0, 1,
                   [
-                    { offset: 0, color: '#e73ca6' }, // 柱图渐变色
-                    { offset: 0.5, color: '#82296f' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
+                    { offset: 0, color: '#209CFF' }, // 柱图渐变色
+                    { offset: 0.5, color: '#47c1e5' }, // 柱图渐变色
+                    { offset: 1, color: '#209CFF' } // 柱图渐变色
                   ]
                 )
               }

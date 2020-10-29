@@ -88,12 +88,12 @@ export default {
     }
   },
   mounted () {
-    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 196) + 'px'
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / (this.id === 'jsqs' ? 216 : 203)) + 'px'
     this.loadDom()
   },
   watch: {
     globalSize (val) {
-      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 196) + 'px'
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / (this.id === 'jsqs' ? 216 : 203)) + 'px'
       this.resize()
     }
   },
@@ -106,7 +106,7 @@ export default {
       this.myChart = this.$echarts.init(document.getElementById(this.id))
       switch (this.id) {
         case 'jsqs':
-          this.option.title.text = '历年教授上讲台比例趋势（按高校类型）'
+          this.option.title.text = '全国各类型高校教授上讲台比例'
           this.option.yAxis.min = 75
           this.option.yAxis.max = 83
           this.colorList = ['#E93CA7', '#29A8FF', '#F38E79', '#0841D4', '#00FFFF', '#6817CE']
@@ -150,7 +150,7 @@ export default {
           }]
           break
         case 'gccbh':
-          this.option.title.text = '高层次人才总数区域分布以及历年变化情况'
+          this.option.title.text = '全国各区域高层次人才总数'
           this.colorList = ['#E93CA7', '#29A8FF', '#7E8082', '#671ACF', '#F38E79', '#02FDFF', '#063ED2']
           this.option.color = this.colorList.concat()
           this.option.legend.data = ['西北', '华南', '华中', '华北', '华东', '西南', '东北']
@@ -200,7 +200,6 @@ export default {
       }
       this.myChart.clear()
       var currentIndex = -1
-      console.log(this.option)
       this.myChart.setOption(this.option)
 
       setInterval(() => {

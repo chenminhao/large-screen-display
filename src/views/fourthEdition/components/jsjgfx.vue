@@ -188,6 +188,7 @@ export default {
         })
         this.myChart = this.$echarts.init(document.getElementById(`${this.id}-${key}`))
         this.myChart.clear()
+        console.log(pieSeries)
         const option = {
           color: color,
           grid: {

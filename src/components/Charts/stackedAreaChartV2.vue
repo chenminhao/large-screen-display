@@ -86,12 +86,14 @@ export default {
     }
   },
   mounted () {
-    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (381 / 196) + 'px'
+    var domHeight = ['jszb', 'bszb'].includes(this.id) ? 273 : 196
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (381 / domHeight) + 'px'
     this.loadDom()
   },
   watch: {
     globalSize (val) {
-      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (381 / 196) + 'px'
+      var domHeight = ['jszb', 'bszb'].includes(this.id) ? 273 : 196
+      document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (381 / domHeight) + 'px'
       this.resize()
     }
   },
@@ -159,7 +161,7 @@ export default {
           }]
           break
         case 'jszb':
-          this.option.title.text = '各学校类型教授学位教师占比趋势分析'
+          this.option.title.text = '全国各类型高校教授职称教师占比'
           this.option.yAxis.min = 75
           this.option.yAxis.max = 83
           this.colorList = ['#E93CA7', '#29A8FF', '#F38E79', '#0841D4', '#00FFFF', '#6817CE']
@@ -203,7 +205,7 @@ export default {
           }]
           break
         case 'bszb':
-          this.option.title.text = '各学校类型博士学位教师占比趋势分析'
+          this.option.title.text = '全国各类型高校博士学位教师占比'
           this.option.yAxis.min = 75
           this.option.yAxis.max = 83
           this.colorList = ['#E93CA7', '#29A8FF', '#F38E79', '#0841D4', '#00FFFF', '#6817CE']
@@ -249,7 +251,6 @@ export default {
       }
       this.myChart.clear()
       var currentIndex = -1
-      console.log(this.option)
       this.myChart.setOption(this.option)
 
       setInterval(() => {

@@ -33,7 +33,7 @@ export default {
       var currentIndex = -1
       this.option = {
         title: {
-          text: '辅导员与心理咨询师数量历年趋势分析',
+          text: '全国辅导员与心理咨询师数',
           textStyle: {
             color: '#fff',
             fontSize: 12,
@@ -147,9 +147,9 @@ export default {
                   return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                      { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                      { offset: 0, color: '#4CC5F8' },
+                      { offset: 0.5, color: '#56E8F2' },
+                      { offset: 1, color: '#84F5DE' }
                     ]
                   )
                 }
@@ -167,9 +167,9 @@ export default {
                   return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 0, color: '#e73ca6' }, // 柱图渐变色
-                      { offset: 0.5, color: '#82296f' }, // 柱图渐变色
-                      { offset: 1, color: '#0c1936' } // 柱图渐变色
+                      { offset: 0, color: '#AE2CF1' },
+                      { offset: 0.5, color: '#964cf7' },
+                      { offset: 1, color: '#7776FF' }
                     ]
                   )
                 }

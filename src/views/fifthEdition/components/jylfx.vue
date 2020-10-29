@@ -50,7 +50,7 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '各授予学位门类就业率分析',
+          text: '全国各学科门类就业率',
           textStyle: {
             color: '#fff',
             fontSize: 12,
@@ -132,7 +132,7 @@ export default {
         ],
         series: [
           {
-            name: '全国高层次教学团队情况',
+            name: '全国各学科门类就业率',
             type: 'bar',
             barWidth: '60%',
             data: data,
@@ -142,9 +142,9 @@ export default {
                   return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
                     0, 0, 0, 1,
                     [
-                      { offset: 0, color: '#28a4fa' },
-                      { offset: 0.5, color: '#1c68a5' },
-                      { offset: 1, color: '#0c1936' }
+                      { offset: 0, color: '#68E0CF' },
+                      { offset: 0.5, color: '#49c2e4' },
+                      { offset: 1, color: '#209CFF' }
                     ]
                   )
                 },

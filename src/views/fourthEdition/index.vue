@@ -3,7 +3,7 @@
     <a-row class="visual">
       <a-col class="visual-left" :span="7">
         <div class="visual-bg padding12">
-          <p style="margin-bottom: 13px;">教授授课情况</p>
+          <!-- <p style="margin-bottom: 13px;">教授授课情况</p> -->
           <a-row :gutter="16">
             <a-col :span="6" v-for="(item,index) in Object.keys(data.left)" :key="index">
               <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect">
@@ -24,34 +24,152 @@
           </a-row>
         </div>
         <div class="visual-bg marginT24">
-          <!-- 教授历年上讲台比例 -->
-          <doughnutChart :id="'jsbl'" :title="'教授历年上讲台比例'" :globalSize="globalSize" />
+          <!-- 全国教授上讲台比例 -->
+          <jsbl :id="'jsbl'" :title="'全国教授上讲台比例'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
-          <!-- 历年教授上讲台比例趋势（按高校类型） -->
+          <!-- 全国各类型高校教授上讲台比例 -->
           <stackedAreaChart :id="'jsqs'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
-          <!-- 高层次人才历年上讲台比例 -->
-          <doughnutChart :id="'gccbl'" :title="'高层次人才历年上讲台比例'" :globalSize="globalSize" />
+          <!-- 全国高层次人才上讲台比例前五的地区 -->
+          <top5 />
+          <!-- <doughnutChart :id="'gccbl'" :title="'高层次人才历年上讲台比例'" :globalSize="globalSize" /> -->
         </div>
         <div class="visual-bg marginT24">
-          <!-- 高层次人才总数区域分布以及历年变化情况 -->
+          <!-- 全国各区域高层次人才总数 -->
           <stackedAreaChart :id="'gccbh'" :globalSize="globalSize" />
         </div>
       </a-col>
       <a-col class="visual-central" :span="10">
         <div class="visual-title">高等教育评估中心大数据可视化系统 - 第4屏 师资情况</div>
         <div class="porR">
-          <p class="visual4-title">教师结构分析</p>
-          <!-- 教师结构分析 -->
-          <jsjgfx :id="'jsjgfx'" :globalSize="globalSize" />
+          <p class="visual4-title">教师结构</p>
+          <!-- 教师结构 -->
+          <a-row :gutter="20">
+            <a-col :span="6">
+              <div class="visual-bg marginT24 structuralAnalysisBlock">
+                <div class="structuralAnalysisP1">职称占比</div>
+                <div class="structuralAnalysisP2">
+                  <span>中级职称</span>
+                  <img src="../../assets/images/j.png" alt="">
+                </div>
+                <div class="structuralAnalysisP3">
+                  <span>37.83%</span>
+                  <div>
+                    <span>比去年</span>
+                    <img src="../../assets/images/xj.png" alt="">
+                    <span class="green">1.08%</span>
+                  </div>
+                </div>
+                <div class="structuralAnalysisP4">
+                  <div>
+                    <p>正高级</p>
+                    <p>17.25%</p>
+                  </div>
+                  <div>
+                    <p>副高级</p>
+                    <p>33.35%</p>
+                  </div>
+                  <div>
+                    <p>其他</p>
+                    <p>11.57%</p>
+                  </div>
+                </div>
+              </div>
+            </a-col>
+            <a-col :span="6">
+              <div class="visual-bg marginT24 structuralAnalysisBlock">
+                <div class="structuralAnalysisP1">学位占比</div>
+                <div class="structuralAnalysisP2">
+                  <span>硕士学位</span>
+                  <img src="../../assets/images/j.png" alt="">
+                </div>
+                <div class="structuralAnalysisP3">
+                  <span>45.15%</span>
+                  <div>
+                    <span>比去年</span>
+                    <img src="../../assets/images/xj.png" alt="">
+                    <span class="green">1.12%</span>
+                  </div>
+                </div>
+                <div class="structuralAnalysisP4">
+                  <div class="P4Block">
+                    <p>博士学位</p>
+                    <p>40.46%</p>
+                  </div>
+                  <div class="P4Block">
+                    <p>其他</p>
+                    <p>14.39%</p>
+                  </div>
+                </div>
+              </div>
+            </a-col>
+            <a-col :span="6">
+              <div class="visual-bg marginT24 structuralAnalysisBlock">
+                <div class="structuralAnalysisP1">年龄占比</div>
+                <div class="structuralAnalysisP2">
+                  <span>36-45岁</span>
+                  <img src="../../assets/images/s.png" alt="">
+                </div>
+                <div class="structuralAnalysisP3">
+                  <span>41.17%</span>
+                  <div>
+                    <span>比去年</span>
+                    <img src="../../assets/images/ss.png" alt="">
+                    <span class="red">0.02%</span>
+                  </div>
+                </div>
+                <div class="structuralAnalysisP4">
+                  <div>
+                    <p>35岁以下</p>
+                    <p>26.62%</p>
+                  </div>
+                  <div>
+                    <p>46-55岁</p>
+                    <p>23.68%</p>
+                  </div>
+                  <div>
+                    <p>其他</p>
+                    <p>8.53%</p>
+                  </div>
+                </div>
+              </div>
+            </a-col>
+            <a-col :span="6">
+              <div class="visual-bg marginT24 structuralAnalysisBlock">
+                <div class="structuralAnalysisP1">导师占比</div>
+                <div class="structuralAnalysisP2">
+                  <span>博士生导师</span>
+                  <img src="../../assets/images/s.png" alt="">
+                </div>
+                <div class="structuralAnalysisP3">
+                  <span>75.15%</span>
+                  <div>
+                    <span>比去年</span>
+                    <img src="../../assets/images/ss.png" alt="">
+                    <span class="red">0.04%</span>
+                  </div>
+                </div>
+                <div class="structuralAnalysisP4">
+                  <div class="P4Block">
+                    <p>硕士生导师</p>
+                    <p>17.66%</p>
+                  </div>
+                  <div class="P4Block">
+                    <p>其他</p>
+                    <p>7.18%</p>
+                  </div>
+                </div>
+              </div>
+            </a-col>
+          </a-row>
         </div>
         <a-row :gutter="30">
           <a-col :span="12">
             <div class="visual-bg marginT24">
               <!-- 职称结构历年占比趋势 -->
-              <stackedAreaChartV2 :id="'zczb'" :globalSize="globalSize"/>
+              <stackedAreaChartV2 :id="'zczb'" :globalSize="globalSize" />
             </div>
           </a-col>
           <a-col :span="12">
@@ -70,7 +188,7 @@
           </a-col>
           <a-col :span="12">
             <div class="visual-bg marginT24">
-              <!-- 辅导员与心理咨询师数量历年趋势分析 -->
+              <!-- 全国辅导员与心理咨询师数 -->
               <doubleChart :id="'fdyzb'" :globalSize="globalSize" />
             </div>
           </a-col>
@@ -78,13 +196,13 @@
         <a-row :gutter="30">
           <a-col :span="12">
             <div class="visual-bg marginT24">
-              <!-- 各学校类型教授学位教师占比趋势分析 -->
+              <!-- 全国各类型高校教授职称教师占比 -->
               <stackedAreaChartV2 :id="'jszb'" :globalSize="globalSize" />
             </div>
           </a-col>
           <a-col :span="12">
             <div class="visual-bg marginT24">
-              <!-- 各学校类型博士学位教师占比趋势分析 -->
+              <!-- 全国各类型高校博士学位教师占比 -->
               <stackedAreaChartV2 :id="'bszb'" :globalSize="globalSize" />
             </div>
           </a-col>
@@ -102,13 +220,13 @@
               </div>
             </a-col>
           </a-row>
-          <!-- 历年各学科门类专业教师数据 -->
+          <!-- 全国各学科门类专任教师 -->
           <xksj :id="'xksj'" :globalSize="globalSize" />
         </div>
         <div class="visual-bg marginT24">
-          <!-- 国家级教学成果奖数据分析 (各学校类型历年国家级教学成果奖情况) -->
+          <!-- 各性质高校国家级教学成果奖获奖项目数 -->
           <xxdjcg :id="'xxdjcg'" :globalSize="globalSize" />
-          <!-- 各学校类型历年国家级教学成果奖情况 -->
+          <!-- 各性质高校国家级教学成果奖获奖项目数 -->
           <xxlxcg :id="'xxlxcg'" :globalSize="globalSize" />
         </div>
       </a-col>
@@ -119,7 +237,7 @@
 <script>
 import { PageView } from '@/layouts'
 import { doughnutChart, stackedAreaChart, stackedAreaChartV2, doubleChart } from '@/components/Charts'
-import { jsjgfx, xksj, nlzb, xxdjcg, xxlxcg } from './components'
+import { jsjgfx, xksj, nlzb, xxdjcg, xxlxcg, jsbl, top5 } from './components'
 import ICountUp from 'vue-countup-v2'
 export default {
   props: {
@@ -161,7 +279,9 @@ export default {
     xksj,
     nlzb,
     xxdjcg,
-    xxlxcg
+    xxlxcg,
+    jsbl,
+    top5
   },
   methods: {
   }
@@ -197,8 +317,7 @@ p {
   .visual-left,
   .visual-right {
     .visual-info {
-      padding: 8px 0;
-      margin-bottom: 12px;
+      padding: 18px 0;
       background: rgba(67, 154, 255, 0);
       border: 1px solid rgba(67, 154, 255, 0.39);
       border-radius: 4px;
@@ -429,11 +548,75 @@ p {
   }
 }
 .visual4-title {
-  position: absolute;
-  top: 38px;
-  left: 30px;
+  margin: 20px 0 0 12px;
   font-size: 18px;
   font-weight: 400;
   color: #fff;
+}
+.structuralAnalysisBlock {
+  padding: 6% 5%;
+  .structuralAnalysisP1 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+  .structuralAnalysisP2 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    span {
+      font-size: 10px;
+      font-weight: 400;
+      color: #29a8ff;
+    }
+  }
+  .structuralAnalysisP3 {
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > span {
+      font-size: 16px;
+      color: #ffffff;
+    }
+    > div {
+      span:nth-of-type(1) {
+        margin-right: 4px;
+        font-size: 10px;
+        color: #29a8ff;
+      }
+      .green {
+        font-size: 12px;
+        color: #25d94b;
+        font-weight: bold;
+      }
+      .red {
+        font-size: 12px;
+        font-weight: bold;
+        color: #ff5984;
+      }
+    }
+  }
+  .structuralAnalysisP4 {
+    display: flex;
+    justify-content: space-between;
+    > div {
+      padding: 0 2%;
+      border-right: 1px solid #3f70af;
+    }
+    > div:last-child {
+      border-right: 1px solid transparent;
+    }
+    .P4Block{
+      flex: 1;
+      padding-left: 8%;
+    }
+    p:nth-of-type(1) {
+      font-size: 10px;
+      font-weight: 400;
+      color: #29a8ff;
+    }
+  }
 }
 </style>

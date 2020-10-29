@@ -1,6 +1,20 @@
 <template>
   <a-spin :spinning="loading">
     <div :id="id"></div>
+    <ul class="timeUl clearfix">
+      <li @click="newIndex=1" :class="newIndex===1?'active':''">
+        <div class="timeRound"></div>
+        <p>2017</p>
+      </li>
+      <li @click="newIndex=2" :class="newIndex===2?'active':''">
+        <div class="timeRound"></div>
+        <p>2018</p>
+      </li>
+      <li @click="newIndex=3" :class="newIndex===3?'active':''">
+        <div class="timeRound"></div>
+        <p>2019</p>
+      </li>
+    </ul>
   </a-spin>
 </template>
 
@@ -20,11 +34,13 @@ export default {
       loading: false,
       legendData: [],
       seriesData: [],
-      option: null
+      newIndex: 1,
+      option: null,
+      myChart: null
     }
   },
   mounted () {
-    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 320) + 'px'
+    document.getElementById(this.id).style.height = document.getElementById(this.id).clientWidth / (485 / 290) + 'px'
     this.loadDom()
   },
   methods: {
@@ -33,7 +49,7 @@ export default {
     },
     loadDom () {
       // 基于准备好的dom，初始化echarts实例
-      var myChart = this.$echarts.init(document.getElementById(this.id))
+      this.myChart = this.$echarts.init(document.getElementById(this.id))
       var arr = [ { value: 3200, name: '综合院校' },
         { value: 2700, name: '理工院校' },
         { value: 1000, name: '师范院校' },
@@ -45,6 +61,7 @@ export default {
         { value: 100, name: '农业院校' },
         { value: 230, name: '体育院校' },
         { value: 110, name: '林业院校' }]
+      var currentIndex = -1
       this.legendData = []
       this.seriesData = []
       arr.map(el => {
@@ -52,15 +69,16 @@ export default {
         this.seriesData.push(el.value)
       })
       this.option = {
+        color: ['#AE2CF1', '#209CFF'],
         title: {
-          text: '各学校类型历年国家级教学成果奖情况',
+          text: '各性质高校辅导员和心理咨询师数量',
           textStyle: {
             color: '#fff',
             fontSize: 12,
             fontweight: 400
           },
           top: 10,
-          left: 'center'
+          left: 10
         },
         tooltip: {
           trigger: 'axis',
@@ -84,7 +102,7 @@ export default {
           top: 60,
           left: '10%',
           right: '6%',
-          bottom: '14%',
+          bottom: '24%',
           containLabel: false
         },
         calculable: true,
@@ -147,14 +165,16 @@ export default {
             data: this.seriesData,
             itemStyle: {
               normal: {
-                color: new this.$echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#28a4fa' }, // 柱图渐变色
-                    { offset: 0.5, color: '#1c68a5' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
-                  ]
-                )
+                color: (params) => {
+                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#4CC5F8' },
+                      { offset: 0.5, color: '#56E8F2' },
+                      { offset: 1, color: '#84F5DE' }
+                    ]
+                  )
+                }
               }
             }
           },
@@ -165,22 +185,82 @@ export default {
             data: this.seriesData,
             itemStyle: {
               normal: {
-                color: new this.$echarts.graphic.LinearGradient(
-                  0, 0, 0, 1,
-                  [
-                    { offset: 0, color: '#e73ca6' }, // 柱图渐变色
-                    { offset: 0.5, color: '#82296f' }, // 柱图渐变色
-                    { offset: 1, color: '#0c1936' } // 柱图渐变色
-                  ]
-                )
+                color: (params) => {
+                  return params.dataIndex === currentIndex ? '#fff' : new this.$echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                      { offset: 0, color: '#AE2CF1' },
+                      { offset: 0.5, color: '#964cf7' },
+                      { offset: 1, color: '#7776FF' }
+                    ]
+                  )
+                }
               }
             }
           }
         ]
       }
-      myChart.clear()
-      myChart.setOption(this.option)
+      this.myChart.clear()
+      this.myChart.setOption(this.option)
+      setInterval(() => {
+        var dataLen = this.option.series[0].data.length
+        // 取消之前高亮的图形
+        this.myChart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        currentIndex = (currentIndex + 1) % dataLen
+        if (currentIndex + 1 === dataLen) {
+          this.newIndex = this.newIndex % 3 + 1
+        }
+        this.myChart.setOption(this.option)
+        // 高亮当前图形
+        this.myChart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        // 显示 tooltip
+        this.myChart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+      }, this.globalTimes)
     }
   }
 }
 </script>
+<style lang="less" scoped>
+.timeUl {
+  width: 80%;
+  margin: 0 auto;
+  li {
+    float: left;
+    position: relative;
+    width: 33.33%;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #102f56;
+    text-align: center;
+    .timeRound {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      margin-left: -6px;
+      border: 2px solid #a1a1a1;
+      border-radius: 5px;
+    }
+  }
+  li.active {
+    border-top: 1px solid #e93ca7;
+    .timeRound {
+      border: 2px solid #e93ca7;
+      background: #e93ca7;
+    }
+  }
+}
+</style>

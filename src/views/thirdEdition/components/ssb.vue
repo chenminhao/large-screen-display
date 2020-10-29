@@ -2,10 +2,19 @@
   <div>
     <a-spin :spinning="loading">
       <div :id="id" style="width:100%;"></div>
-      <ul class="kcgm-ul clearfix">
-        <li @click="newIndex=1" :class="newIndex===1?'active':''">2017</li>
-        <li @click="newIndex=2" :class="newIndex===2?'active':''">2018</li>
-        <li @click="newIndex=3" :class="newIndex===3?'active':''">2019</li>
+      <ul class="timeUl clearfix">
+        <li @click="newIndex=1" :class="newIndex===1?'active':''">
+          <div class="timeRound"></div>
+          <p>2017</p>
+        </li>
+        <li @click="newIndex=2" :class="newIndex===2?'active':''">
+          <div class="timeRound"></div>
+          <p>2018</p>
+        </li>
+        <li @click="newIndex=3" :class="newIndex===3?'active':''">
+          <div class="timeRound"></div>
+          <p>2019</p>
+        </li>
       </ul>
     </a-spin>
   </div>
@@ -70,7 +79,7 @@ export default {
           top: '12%',
           left: '14%',
           right: '4%',
-          bottom: '14%',
+          bottom: '18%',
           containLabel: false
         },
         xAxis: [
@@ -191,52 +200,33 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.kcgm-ul {
-  border-top: 1px solid rgba(41, 168, 255, 0.2);
-  padding: 12px 0;
-  margin-left: 2%;
-  width: 98%;
-  margin-top: 18px;
+.timeUl {
+  width: 80%;
+  margin: 0 auto;
   li {
-    position: relative;
-    text-align: center;
     float: left;
+    position: relative;
     width: 33.33%;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #102f56;
+    text-align: center;
+    .timeRound {
+      position: absolute;
+      top: -5px;
+      left: 45%;
+      width: 9px;
+      height: 9px;
+      border: 2px solid #a1a1a1;
+      border-radius: 5px;
+    }
   }
-  li::before {
-    cursor: pointer;
-    content: '';
-    position: absolute;
-    top: -16px;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    margin-left: -5px;
-    border-radius: 50%;
-    background: #a1a1a1;
-  }
-  li.active::before {
-    content: '';
-    position: absolute;
-    top: -16px;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    margin-left: -5px;
-    border-radius: 50%;
-    background: #eb45a1;
-  }
-  li.active::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    width: 0;
-    height: 0;
-    margin-left: -5px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #eb45a1;
+  li.active {
+    border-top: 1px solid #e93ca7;
+    .timeRound {
+      border: 2px solid #e93ca7;
+      background: #e93ca7;
+    }
   }
 }
 </style>
