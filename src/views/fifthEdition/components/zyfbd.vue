@@ -3,7 +3,6 @@
     <div :id="id"></div>
   </a-spin>
 </template>
-
 <script>
 export default {
   props: {
@@ -106,6 +105,7 @@ export default {
             width: 40,
             height: e.name.length * 26,
             color: '#fff',
+            // backgroundColor: '#0EFDFF',
             rotate,
             algin: 'left',
             padding: [0, 0, 30, 30],

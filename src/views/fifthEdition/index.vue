@@ -97,7 +97,15 @@
         <div class="visual-bg marginT24 distributionOfProfessions">
           <p class="majorTitle">各省份学科专业布点数</p>
           <div class="professionalDepots">
-            <zyfbd :id="'zyfbd'" :globalSize="globalSize" />
+            <div>
+              <div class="professionActive"></div>
+              <div class="professionMain" :style="{transform: `rotate(${11.612903225806452*(newIndex+1)+169}deg)`}">
+                <div class="professionBlock" :class="newIndex === 30 - index ? 'active' : '' " v-for="(item,index) in data" :key="index" :style="{transform: `rotate(${11.612903225806452*(index+1)}deg)`}">
+                  <div class="professionTitle" :class="newIndex === 30 - index ? 'active' : '' ">{{ item.name }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- <zyfbd :id="'zyfbd'" :globalSize="globalSize" /> -->
             <div class="professionalLeft">
               <div class="porR">
                 <img src="../../assets/images/left.png" alt="">
@@ -153,6 +161,7 @@ import { xkfx, zyzz, zyjs, zyfb, zydb, zycy, jylpm, jylfx, zyfbd } from './compo
 export default {
   data () {
     return {
+      newIndex: 0,
       rankList: [
         { name: '数据科学与大数据技术 ', type: '工学、理学', value: 364 },
         { name: '机器人工程', type: '工学', value: 160 },
@@ -194,6 +203,39 @@ export default {
         { name: '工学', value: 970 },
         { name: '医学', value: 58 },
         { name: '艺术学', value: 328 }
+      ],
+      data: [
+        { name: '河北省' },
+        { name: '山西省' },
+        { name: '内蒙古自治区' },
+        { name: '黑龙江省' },
+        { name: '吉林省' },
+        { name: '辽宁省' },
+        { name: '陕西省' },
+        { name: '甘肃省' },
+        { name: '青海省' },
+        { name: '新疆维吾尔自治区' },
+        { name: '宁夏回族自治区' },
+        { name: '山东省' },
+        { name: '河南省' },
+        { name: '江苏省' },
+        { name: '浙江省' },
+        { name: '安徽省' },
+        { name: '江西省' },
+        { name: '福建省' },
+        { name: '湖北省' },
+        { name: '湖南省' },
+        { name: '广东省' },
+        { name: '广西壮族自治区' },
+        { name: '海南省' },
+        { name: '四川省' },
+        { name: '云南省' },
+        { name: '贵州省' },
+        { name: '西藏自治区' },
+        { name: '上海市' },
+        { name: '重庆市' },
+        { name: '天津市' },
+        { name: '北京市' }
       ]
     }
   },
@@ -214,6 +256,14 @@ export default {
     jylpm,
     jylfx,
     zyfbd
+  },
+  created () {
+    setInterval(() => {
+      this.newIndex = this.newIndex + 1
+      if (this.newIndex > 30) {
+        this.newIndex = 0
+      }
+    }, 6000)
   }
 
 }
@@ -229,7 +279,7 @@ p {
 }
 .visual {
   background: url('../../assets/images/top.png') no-repeat;
-  background-size: 100%;
+  background-size: 100% 78px;
   .visual-bg {
     background: rgba(12, 21, 48, 0.5);
     border: 1px solid rgba(67, 154, 255, 0.15);
@@ -402,5 +452,69 @@ p {
   .professionalLi:nth-child(-n + 2) {
     color: #3360da;
   }
+}
+.professionBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 148px;
+  transform: rotate(12deg);
+  transform-origin: 50% 0%;
+  .professionTitle {
+    position: absolute;
+    top: 188px;
+    left: -3px;
+    font-size: 12px;
+    line-height: 1.2;
+    transform: rotate(180deg);
+  }
+  .active {
+    color: #3360da;
+  }
+}
+.professionBlock:nth-child(2n) {
+  background: #157cfe;
+}
+.professionBlock:nth-child(2n + 1) {
+  background: #fc7d7e;
+}
+.professionBlock:nth-child(2n)::before {
+  background: #157cfe;
+}
+.professionBlock:nth-child(2n + 1)::before {
+  background: #fc7d7e;
+}
+.professionBlock.active {
+  background: #0efdff;
+}
+.professionBlock.active::before {
+  background: #0efdff;
+}
+.professionBlock::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.professionMain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.professionActive {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: rotate(180deg);
+  width: 30px;
+  height: 142px;
+  margin-left: -15px;
+  // background: #0efdff;
+  background: url('../../assets/images/zz.png') no-repeat;
+  background-size: 100% 100%;
 }
 </style>
