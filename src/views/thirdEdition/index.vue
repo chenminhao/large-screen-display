@@ -4,7 +4,7 @@
       <a-col class="visual-left" :span="7">
         <a-row :gutter="16">
           <a-col :span="8" v-for="(item,index) in Object.keys(data.left)" :key="index">
-            <div v-if="item==='全国外聘教师总数'" class="bg-left out-rect" style="margin-bottom:11px;">
+            <div v-if="item==='全省外聘教师总数'" class="bg-left out-rect" style="margin-bottom:11px;">
               <div class="in-rect">
                 <p>
                   <ICountUp :start-val="0" :end-val="data.left[item]" :options="options" :decimals="0" :duration="3000" />万
@@ -42,19 +42,19 @@
                       :duration="3000"
                       ref="example1" />万
                   </p>
-                  <p>全国课程总门数</p>
+                  <p>全省课程总门数</p>
                 </div>
                 <div class="visual-kcgm-block">
                   <p class="blue">
                     <ICountUp :start-val="0" :end-val="1.3" :options="options" :decimals="0" :duration="3000" />万
                   </p>
-                  <p>国家精品在线开放课程</p>
+                  <p>全省精品在线开放课程</p>
                 </div>
                 <div class="visual-kcgm-block">
                   <p class="blue">
                     <ICountUp :start-val="0" :end-val="28.6" :options="options" :decimals="0" :duration="3000" />万
                   </p>
-                  <p>全国公共课总门数</p>
+                  <p>全省公共课总门数</p>
                 </div>
               </div>
             </a-col>
@@ -62,25 +62,25 @@
         </div>
       </a-col>
       <a-col class="visual-central" :span="10">
-        <div class="visual-title">高等教育评估中心大数据可视化系统 - 第3屏 全国高校情况概览</div>
+        <div class="visual-title">福建省高等教育大数据可视化系统 - 第1屏 全省高校情况概览</div>
         <ul class="clearfix">
           <li v-for="(item,index) in navList" @click="newIndex=index" :class="newIndex===index?'active pull-left':'pull-left'" :key="index">{{ item }}</li>
         </ul>
         <div class="visual-map porR">
           <maps @openData="openData" />
-          <div class="visual-map-title">全国高校分布</div>
+          <div class="visual-map-title">全省高校分布</div>
           <div class="visual-map-info">
             <div class="visual-map-block">
               <p>
                 <ICountUp :start-val="0" :end-val="1265" :decimals="0" :duration="3000" />
               </p>
-              <p>全国本科高校数量</p>
+              <p>全省本科高校数量</p>
             </div>
             <div class="visual-map-block">
               <p>
                 <ICountUp :start-val="0" :end-val="1261" :decimals="0" :duration="3000" />
               </p>
-              <p>全国本科采集数量</p>
+              <p>全省本科采集数量</p>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@
       <a-col class="visual-right" :span="7">
         <a-row :gutter="16">
           <a-col :span="8" v-for="(item,index) in Object.keys(data.right)" :key="index">
-            <div v-if="item==='全国全日制在校生'" class="bg-right out-rect">
+            <div v-if="item==='全省全日制在校生'" class="bg-right out-rect">
               <div class="in-rect">
                 <p>
                   <ICountUp :start-val="0" :end-val="data.right[item]" :options="options" :decimals="0" :duration="3000" />万
@@ -114,7 +114,7 @@
         </a-row>
         <div class="visual-bg marginT12">
           <div class="porR">
-            <p class="visual-left-title">全国各类型高校历年生师比</p>
+            <p class="visual-left-title">全省各类型高校历年生师比</p>
           </div>
           <ssb :id="'ssb'" />
         </div>
@@ -127,19 +127,19 @@
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="764" :decimals="0" :duration="3000" />
               </p>
-              <p>全国本科专业数</p>
+              <p>全省本科专业数</p>
             </div>
             <div class="visual-zybj-info">
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="8.7" :options="options" :decimals="0" :duration="3000" />万
               </p>
-              <p>全国专业布局</p>
+              <p>全省专业布局</p>
             </div>
             <div class="visual-zybj-info">
               <p class="blue">
                 <ICountUp :start-val="0" :end-val="5.5" :options="options" :decimals="0" :duration="3000" />万
               </p>
-              <p>全国专业布点数</p>
+              <p>全省专业布点数</p>
             </div>
             <div class="visual-zybj-info">
               <p class="blue">
@@ -171,18 +171,18 @@ export default {
       province: '',
       spinning: false,
       newIndex: 0,
-      navList: ['全国高校', '一流大学', '一流学科'],
+      navList: ['全省高校', '一流大学', '一流学科'],
       data: {
         left: {
-          '全国高校教职工总数': 173.8,
-          '全国专任教师总数': 111.8,
-          '全国外聘教师总数': 27.4,
-          '全国高层次人才总数': 7.6,
-          '全国实验技术人员总数': 7.6,
-          '全国教育管理人才员总数': 5.8
+          '全省高校教职工总数': 173.8,
+          '全省专任教师总数': 111.8,
+          '全省外聘教师总数': 27.4,
+          '全省高层次人才总数': 7.6,
+          '全省实验技术人员总数': 7.6,
+          '全省教育管理人才员总数': 5.8
         },
         right: {
-          '全国全日制在校生总数': 2165.7,
+          '全省全日制在校生总数': 2165.7,
           '本科生总数': 1748.7,
           '博士研究生总数': 40.5,
           '硕士研究生总数': 184.7,

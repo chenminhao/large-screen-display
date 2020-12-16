@@ -40,7 +40,7 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '全国教学名师',
+          text: '全省教学名师',
           textStyle: {
             color: '#fff',
             fontSize: 12,

@@ -49,7 +49,7 @@ export default {
       this.myChart.clear()
       const option = {
         title: {
-          text: '全国专业布局 ',
+          text: '全省专业布局 ',
           top: 12,
           left: 12,
           textStyle: {

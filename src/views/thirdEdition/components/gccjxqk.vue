@@ -47,7 +47,7 @@ export default {
       var currentIndex = -1
       const option = {
         title: {
-          text: '全国高层次教学团队',
+          text: '全省高层次教学团队',
           textStyle: {
             color: '#fff',
             fontSize: 12,
@@ -128,7 +128,7 @@ export default {
         ],
         series: [
           {
-            name: '全国高层次教学团队',
+            name: '全省高层次教学团队',
             type: 'bar',
             barWidth: 20,
             data: data,
