@@ -11,13 +11,12 @@ import './core/use'
 import './utils/filter' // global filter
 import './style/indexModity.css'
 import 'xe-utils'
-import echarts from 'echarts'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // require styles
 import 'swiper/dist/css/swiper.css'
-Vue.prototype.$echarts = echarts
+Vue.prototype.$echarts = require('echarts')
 Vue.prototype.globalTimes = 3000
 Vue.config.productionTip = false
 Vue.use(VueAxios)

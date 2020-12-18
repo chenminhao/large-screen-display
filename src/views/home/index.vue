@@ -1,48 +1,40 @@
-<!-- The ref attr used to find the swiper instance -->
 <template>
-  <swiper class="fullScreen" :options="swiperOption" ref="mySwiper">
-    <!-- slides -->
-    <swiper-slide>
-      <third-edition :globalSize="globalSize" />
-    </swiper-slide>
-    <swiper-slide>
-      <fourth-edition :globalSize="globalSize" />
-    </swiper-slide>
-    <swiper-slide>
-      <fifth-edition :globalSize="globalSize" />
-    </swiper-slide>
-    <swiper-slide>
-      <sixth-edition :globalSize="globalSize" />
-    </swiper-slide>
-  </swiper>
+  <div>
+    <echart :coordinates="key" />
+    <div class="globalNav">
+      <div @click="key=index" v-for="(item,index) in navList" :key="index" :class="index===key?'active':''">{{ item }}</div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { fifthEdition, fourthEdition, sixthEdition, thirdEdition } from '../index'
+import echart from '../echart/index'
 export default {
-  name: 'Carrousel',
-  components: { fifthEdition, fourthEdition, sixthEdition, thirdEdition },
+  components: { echart },
   data () {
     return {
-      swiperOption: {
-      },
-      globalSize: ''
-    }
-  },
-  created () {
-    window.onresize = () => {
-      this.globalSize = String((new Date()).getTime())
-    }
-  },
-  computed: {
-    swiper () {
-      return this.$refs.mySwiper.swiper
+      key: 0,
+      navList: ['分布图', '流向图', '散点图']
     }
   }
 }
 </script>
+
 <style lang="less" scoped>
-.fullScreen {
-  width: 100%;
+.globalNav{
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  >div{
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+  }
+  >.active{
+    color: #fff;
+    background: #6cf;
+  }
 }
 </style>

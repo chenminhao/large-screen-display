@@ -22,7 +22,7 @@ export default {
 <style>
 #app {
   height: 100%;
-  background: #080f28;
+  /* background: #080f28; */
 }
 .ant-select-dropdown-menu {
   background-color: #0d2143;
